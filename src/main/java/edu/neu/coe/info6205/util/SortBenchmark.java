@@ -81,7 +81,7 @@ public class SortBenchmark {
         logger.info("Beginning String sorts");
 
         // NOTE: common words benchmark
-        benchmarkStringSorters(getWords("3000-common-words.txt", SortBenchmark::lineAsList), 4000, 5000);
+        benchmarkStringSorters(getWords("hindi.txt", SortBenchmark::lineAsList), 4000, 5000);
 
         // NOTE: Leipzig English words benchmarks (according to command-line arguments)
         wordCounts.forEach(this::doLeipzigBenchmarkEnglish);

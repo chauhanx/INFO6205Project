@@ -89,7 +89,7 @@ public class TimerTest {
         GoToSleep(TENTH, 0);
         timer.stop();
         final double time = timer.millisecs();
-        assertEquals(TENTH_DOUBLE, time, 10.0);
+        assertEquals(TENTH_DOUBLE, time, 20.0);
         assertEquals(1, run);
     }
 
