@@ -30,7 +30,7 @@ public class MSDRadixSort {
     public static void main(String[] args) throws IOException {
         MSDRadixSort msdSort = new MSDRadixSort();
         try{
-            String fileName = "test.txt";
+            String fileName = "hindi.txt";
             URL url = Resources.getResource(fileName);
             ArrayList<String> lines = new ArrayList<>(Resources.readLines(url,StandardCharsets.UTF_8));
             String[] a = lines.toArray(new String[0]);
