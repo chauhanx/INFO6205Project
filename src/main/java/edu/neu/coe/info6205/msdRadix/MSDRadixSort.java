@@ -15,22 +15,10 @@ public class MSDRadixSort {
 //    65536
 
 
-//    public ArrayList readFile() throws IOException {
-//        try{
-//            String fileName = "3000-common-words.txt";
-//            URL url = Resources.getResource(fileName);
-//            ArrayList<String> lines = new ArrayList<>(Resources.readLines(url,StandardCharsets.UTF_8));
-//            return lines;
-//        }catch(FileNotFoundException ex){
-//            System.out.println(ex.getMessage());
-//            return null;
-//        }
-//    }
-
     public static void main(String[] args) throws IOException {
         MSDRadixSort msdSort = new MSDRadixSort();
         try{
-            String fileName = "test.txt";
+            String fileName = "hindi.txt";
             URL url = Resources.getResource(fileName);
             ArrayList<String> lines = new ArrayList<>(Resources.readLines(url,StandardCharsets.UTF_8));
             String[] a = lines.toArray(new String[0]);
