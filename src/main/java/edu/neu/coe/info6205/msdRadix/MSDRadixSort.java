@@ -18,9 +18,7 @@ public class MSDRadixSort {
     public static void main(String[] args) throws IOException {
         MSDRadixSort msdSort = new MSDRadixSort();
         try{
-            String fileName = "hindi.txt";
-            URL url = Resources.getResource(fileName);
-            ArrayList<String> lines = new ArrayList<>(Resources.readLines(url,StandardCharsets.UTF_8));
+            ArrayList<String> lines = new ReadTextFile().readStream();
             String[] a = lines.toArray(new String[0]);
             String[] aux = new String[a.length];
             msdSort.sort(a,aux,0,a.length-1,0);
