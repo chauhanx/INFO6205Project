@@ -1,6 +1,7 @@
 package edu.neu.coe.info6205.msdRadix;
 
 import org.algorithm_visualizer.*;
+import org.checkerframework.checker.units.qual.m;
 // }
 
 public class Main {
@@ -11,13 +12,13 @@ public class Main {
 
     // define input variables
     String[] messages = {
-            "Visualize",
-            "your",
-            "own",
-            "code",
-            "here!",
-            "dmlksalkm"
+            "अं",
+            "अंकुर",
+            "क",
+            "कहने",
+            "लोकतांत्रिक"
     };
+
 
     // highlight each line of messages recursively
     void highlight(int line) {
@@ -33,10 +34,14 @@ public class Main {
     }
 
     Main() {
+
+        MSDRadixSort m = new MSDRadixSort();
+        m.sort(messages);
+
         // visualize {
         Layout.setRoot(new VerticalLayout(new Commander[]{array2dTracer, logTracer}));
         array2dTracer.set(messages);
-        Tracer.delay();
+//        Tracer.delay();
         // }
         highlight(0);
     }

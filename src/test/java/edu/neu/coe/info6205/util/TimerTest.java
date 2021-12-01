@@ -96,8 +96,8 @@ public class TimerTest {
              ArrayList<String> lines = new ArrayList<>(Resources.readLines(url,StandardCharsets.UTF_8));
              a = lines.toArray(new String[0]);
              String[] aux = new String[a.length];
-             msdSort.sort(a,aux,0,a.length-1,0);
-             msdSort.print(a);
+             msdSort.sort(a);
+//             msdSort.print(a);
          }catch(FileNotFoundException ex){
              System.out.println(ex.getMessage());
          } catch (IOException e) {
@@ -111,13 +111,12 @@ public class TimerTest {
          helper.init(a.length);
          final PrivateMethodTester privateMethodTester = new PrivateMethodTester(helper);
          MSDRadixSort sorter = new MSDRadixSort();
-         String[] aux = new String[a.length];
-         sorter.sort(a,aux,0,a.length-1,0);
+         sorter.sort(a);
          
           Timer timer = new Timer();
          final String[] temp =a;
           double mean = timer.repeat(10, () -> temp, t -> {
-        	 sorter.sort(temp,aux,0,temp.length-1,0);
+        	 sorter.sort(temp);
              return null;
          });
         System.out.println("Time taken for Sorted Array: "+mean);

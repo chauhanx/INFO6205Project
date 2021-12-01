@@ -2,6 +2,7 @@
 
 ### MSD Radix Sort
 ##### for natural language which uses Unicode characters
+###### primarily focussed on Hindi words
 
 &nbsp;
 > https://home.unicode.org 
@@ -15,3 +16,14 @@
 ##### 3. Run MSDRadixSort main function
 
 
+
+
+&nbsp;
+
+### Working Module
+
+> INFO6205 > src > main > java > edu.neu.coe.info6205 > msdRadix
+
+### Test Case Module
+
+> INFO6205 > src > test > java > edu.neu.coe.info6205 > sort > counting > MSDStringSortTest

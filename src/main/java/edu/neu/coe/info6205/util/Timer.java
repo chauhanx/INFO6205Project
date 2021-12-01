@@ -55,28 +55,23 @@ public class Timer {
     public <T, U> double repeat(int n, Supplier<T> supplier, Function<T, U> function, UnaryOperator<T> preFunction, Consumer<U> postFunction) {
         logger.trace("repeat: with " + n + " runs");
         // TO BE IMPLEMENTED: note that the timer is running when this method is called and should still be running when it returns.
-        pause();
-        
-        for (int i = 0; i < n; i++) {
-        	T tt;
-        	if(preFunction != null)
-            {
-        		tt=preFunction.apply(supplier.get());
-            }else
-            {
-            	tt=supplier.get();
+        int i = 0;
+        while(i < n) {
+            lap();
+            pause();
+            if(null != preFunction) {
+                preFunction.apply(supplier.get());
             }
-        	resume();
-           // function.apply(tt);
-            U u=function.apply(tt);
-            pauseAndLap();
-            if(postFunction != null)
-            {
-            	
-            	postFunction.accept(u);
-           }
+            resume();
+            U func = function.apply(supplier.get());
+            pause();
+            if(postFunction != null) {
+                postFunction.accept(func);
+            }
+            resume();
+            i++;
         }
- 
+        pause();
         return meanLapTime();
     }
 

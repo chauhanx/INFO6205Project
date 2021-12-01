@@ -16,12 +16,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
-    <repositories>
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -68,16 +63,12 @@
             <version>0.5.4</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.belerweb/pinyin4j -->
         <dependency>
-            <groupId>com.ibm.icu</groupId>
-            <artifactId>icu4j</artifactId>
-            <version>69.1</version>
+            <groupId>com.belerweb</groupId>
+            <artifactId>pinyin4j</artifactId>
+            <version>2.5.0</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.algorithm-visualizer</groupId>
-            <artifactId>tracers.java</artifactId>
-            <version>[1.0.0,)</version>
-        </dependency>
     </dependencies>
 </project>

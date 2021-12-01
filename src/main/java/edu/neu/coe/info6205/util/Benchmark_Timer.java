@@ -4,6 +4,10 @@
 
 package edu.neu.coe.info6205.util;
 
+import edu.neu.coe.info6205.msdRadix.MSDRadixSort;
+import edu.neu.coe.info6205.sort.elementary.InsertionSort;
+
+import java.util.Random;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -117,6 +121,39 @@ public class Benchmark_Timer<T> implements Benchmark<T> {
      */
     public Benchmark_Timer(String description, Consumer<T> f) {
         this(description, null, f, null);
+    }
+
+    public static void main(String args[]) {
+        Random r = new Random();
+        int m = 100;   // number of runs
+        int n1 = 3000;
+        int n2 = 3000;
+        int n3 = 3000;
+        int n4 = 3000;
+
+        /**
+         * returns time(in ms) for random ordered array
+         */
+        for (int k = 0; k < 5; k++) {
+            n1 *= 2;
+//            InsertionSort<Integer> insertion = new InsertionSort<>();
+            MSDRadixSort msd = new MSDRadixSort();
+            Consumer<String[]> consumer = arr -> msd.sort(arr);
+            Benchmark_Timer<String[]> benchTimer = new Benchmark_Timer<>("MSD Radix sort for randomArray with array length : " + n1, consumer);
+            int N = n1;
+            Supplier<String[]> orderedSupplier = () -> {
+                String[] array = new String[N];
+
+//                for (int i = 0; i < N; i++)
+//                    array[i] = i;
+                return array;
+            };
+
+//            consumer.accept(orderedSupplier.get());
+            System.out.println(benchTimer.run(orderedSupplier.get(), m));
+        }
+        System.out.println("-------------END-------------");
+
     }
 
     private final String description;
