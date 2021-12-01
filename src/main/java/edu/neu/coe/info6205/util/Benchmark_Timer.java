@@ -137,20 +137,20 @@ public class Benchmark_Timer<T> implements Benchmark<T> {
         for (int k = 0; k < 5; k++) {
             n1 *= 2;
 //            InsertionSort<Integer> insertion = new InsertionSort<>();
-            MSDRadixSort msd = new MSDRadixSort();
-            Consumer<String[]> consumer = arr -> msd.sort(arr);
-            Benchmark_Timer<String[]> benchTimer = new Benchmark_Timer<>("MSD Radix sort for randomArray with array length : " + n1, consumer);
-            int N = n1;
-            Supplier<String[]> orderedSupplier = () -> {
-                String[] array = new String[N];
-
-//                for (int i = 0; i < N; i++)
-//                    array[i] = i;
-                return array;
-            };
+//            MSDRadixSort msd = new MSDRadixSort();
+//            Consumer<String[]> consumer = arr -> msd.sort(arr);
+//            Benchmark_Timer<String[]> benchTimer = new Benchmark_Timer<>("MSD Radix sort for randomArray with array length : " + n1, consumer);
+//            int N = n1;
+//            Supplier<String[]> orderedSupplier = () -> {
+//                String[] array = new String[N];
+//
+////                for (int i = 0; i < N; i++)
+////                    array[i] = i;
+//                return array;
+//            };
 
 //            consumer.accept(orderedSupplier.get());
-            System.out.println(benchTimer.run(orderedSupplier.get(), m));
+//            System.out.println(benchTimer.run(orderedSupplier.get(), m));
         }
         System.out.println("-------------END-------------");
 

@@ -62,7 +62,7 @@ public class LSDRadixSort {
 
     public static void main(String[] args) throws IOException {
         try{
-            ArrayList<String> lines = new ReadTextFile().readStream();
+            ArrayList<String> lines = new IOTextFile().readStream(true);
             String[] arr = lines.toArray(new String[0]);
             int n = arr.length;
 
