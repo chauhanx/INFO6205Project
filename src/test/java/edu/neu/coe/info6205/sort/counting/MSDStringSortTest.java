@@ -1,5 +1,6 @@
 package edu.neu.coe.info6205.sort.counting;
 
+import edu.neu.coe.info6205.msdRadix.MSDRadixSort;
 import edu.neu.coe.info6205.sort.BaseHelper;
 import edu.neu.coe.info6205.sort.Helper;
 import edu.neu.coe.info6205.util.Config;
@@ -18,27 +19,31 @@ import static org.junit.Assert.assertEquals;
 
 public class MSDStringSortTest {
 
-    String[] input = "she sells seashells by the seashore the shells she sells are surely seashells".split(" ");
-    String[] expected = "are by seashells seashells seashore sells sells she she shells surely the the".split(" ");
+    String[] input = "आके कान्हा फिर से बंशी बजा दे कलयुगी गोपियों को फिर से नचा दे आके कान्हा तू फिर से बंशी बजा दे".split(" ");
+    String[] expected = "आके आके कलयुगी कान्हा कान्हा को गोपियों तू दे दे दे नचा फिर फिर फिर बंशी बंशी बजा बजा से से से".split(" ");
 
     @Test
     public void sort() {
-        MSDStringSort.sort(input);
-        System.out.println(Arrays.toString(input));
+        System.out.println("Test case 1:");
+        System.out.println("Before sorting: " + Arrays.toString(input));
+        MSDRadixSort.sort(input);
+        System.out.println("After sorting: " + Arrays.toString(input));
         assertArrayEquals(expected, input);
+        System.out.println();
     }
 
     @Test
     public void sort1() throws IOException {
-        int n = 1000;
+        int n = 11368;
         final Helper<String> helper = new BaseHelper<>("test", n, 1L, Config.load(MSDStringSortTest.class));
         helper.init(n);
-        String[] words = getWords("3000-common-words.txt", MSDStringSortTest::lineAsList);
-        final String[] xs = helper.random(String.class, r -> words[r.nextInt(words.length)]);
-        assertEquals(n, xs.length);
-        MSDStringSort.sort(xs);
-        assertEquals("African-American", xs[0]);
-        assertEquals("Palestinian", xs[16]);
+        String[] words = getWords("hindi.txt", MSDStringSortTest::lineAsList);
+        MSDRadixSort.sort(words);
+        System.out.println("Test case 2:");
+        System.out.println("After sorting 2nd word must be: अंक ");
+        assertEquals("अंक", words[1]);
+        System.out.println("After sorting  4th word must be: अंकुर");
+        assertEquals("अंकुर", words[3]);
     }
 
     /**

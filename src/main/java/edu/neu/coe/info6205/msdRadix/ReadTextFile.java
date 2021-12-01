@@ -13,7 +13,7 @@ public class ReadTextFile {
 
     public ArrayList<String> readStream() throws IOException {
         try{
-            String fileName = "chinese.txt";
+            String fileName = "hindi.txt";
             URL url = Resources.getResource(fileName);
             ArrayList<String> lines = new ArrayList<>(Resources.readLines(url, StandardCharsets.UTF_8));
             return lines;
