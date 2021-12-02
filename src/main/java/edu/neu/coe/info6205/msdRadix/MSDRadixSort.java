@@ -13,7 +13,7 @@ public class MSDRadixSort {
     static int R=256;
     static int M = 15;
 //    65536
-    static boolean isChinese = false;
+    static boolean isChinese = true;
 
     public static void main(String[] args) throws IOException {
         try{
@@ -34,6 +34,7 @@ public class MSDRadixSort {
         }
     }
 
+    // abc ,abx,zzz
     public static void print(String[] str){
         System.out.println(Arrays.toString(str));
     }
