@@ -3,36 +3,43 @@ package edu.neu.coe.info6205.msdRadix;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class LSDRadixSort {
+
+    static boolean isChinese = true;
+    static int R=256;
+    static int S=0;
 
     // do not instantiate
     private LSDRadixSort() { }
 
-    public static int findLongestLength(String[] a) {
+
+    public static int findLongestLength(Node[] a) {
         int longest = 0;
         for (int i = 0; i < a.length; ++i) {
-            if (a[i].length() > longest) {
-                longest = a[i].length();
+            if (a[i].getValue().length() > longest) {
+                longest = a[i].getValue().length();
             }
         }
         return longest;
     }
 
-    public static int findCharAtInString(int i, int d, String[] a) {
-        if (d < 0 || d >= a[i].length()) {
+
+    public static int findCharAtInString(int i, int d, Node[] a) {
+        if (d < 0 || d >= a[i].getValue().length()) {
             return 0;
         }
-        return a[i].charAt(d);
+        return a[i].getValue().charAt(d);
     }
 
-    public static void sort(String[] arr, int length) {
+
+
+    public static void sort(Node[] arr, int length) {
         int n = arr.length;
-        int R = 65536;   // extend ASCII alphabet size
-        String[] aux = new String[n];
+        Node[] aux = new Node[arr.length];
 
         for (int i = length-1; i >= 0; i--) {
-
             // compute frequency counts
             int[] count = new int[R+1];
 
@@ -60,23 +67,29 @@ public class LSDRadixSort {
     }
 
 
+    public static void sort(String[] arr){
+
+        Node[] array = helper.getChinesePair(arr);
+        int longestLength = findLongestLength(array);
+        sort(array,longestLength);
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = array[i].getKey();
+        }
+    }
+
+
     public static void main(String[] args) throws IOException {
         try{
-            ArrayList<String> lines = new IOTextFile().readStream(true);
+            IOTextFile io = new IOTextFile();
+            ArrayList<String> lines = io.readStream(isChinese);
             String[] arr = lines.toArray(new String[0]);
             int n = arr.length;
+            Date start = new Date();
+            sort(arr);
 
-            // check that strings have fixed length
-            int longestLength = findLongestLength(arr);
-
-            // sort the strings
-            sort(arr, longestLength);
-
-            // print results
-            for (int i = 0; i < n; i++){
-                System.out.println(arr[i]);
-            }
-
+            Date end = new Date();
+            System.out.println(end.getTime()-start.getTime());
+            io.writeStream(arr);
         }catch(FileNotFoundException ex){
             System.out.println(ex.getMessage());
         }

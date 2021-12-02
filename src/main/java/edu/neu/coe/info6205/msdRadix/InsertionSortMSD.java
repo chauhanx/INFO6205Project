@@ -2,9 +2,9 @@ package edu.neu.coe.info6205.msdRadix;
 
 public class InsertionSortMSD {
 
-    public static void sort(String[] a, int lo, int hi, int d) {
+    public static void sort(Node[] a, int lo, int hi, int d) {
         for (int i = lo; i < hi; i++)
-            for (int j = i; j > lo && less(a[j], a[j - 1], d); j--)
+            for (int j = i; j > lo && less(a[j].getValue(), a[j - 1].getValue(), d); j--)
                 swap(a, j, j - 1);
     }
     private static boolean less(String v, String w, int d) {

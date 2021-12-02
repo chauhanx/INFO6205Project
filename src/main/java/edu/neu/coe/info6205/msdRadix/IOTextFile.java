@@ -35,7 +35,7 @@ public class IOTextFile {
             if (file.exists()) {
                 file.delete(); //you might want to check if delete was successfull
             }
-            FileWriter writer = new FileWriter(getOutputFileName(), true);
+            FileWriter writer = new FileWriter(getOutputFileName(), false);
             for (int i = 0; i < arr.length; i++) {
                 writer.write(arr[i]);
                 writer.write("\n");   // write new line

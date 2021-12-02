@@ -1,5 +1,6 @@
 package edu.neu.coe.info6205.sort.counting;
 
+import edu.neu.coe.info6205.msdRadix.MSDRadixHindi;
 import edu.neu.coe.info6205.msdRadix.MSDRadixSort;
 import edu.neu.coe.info6205.sort.BaseHelper;
 import edu.neu.coe.info6205.sort.Helper;
@@ -26,7 +27,7 @@ public class MSDStringSortTest {
     public void sort() {
         System.out.println("Test case 1:");
         System.out.println("Before sorting: " + Arrays.toString(input));
-//        MSDRadixSort.sort(input);
+        MSDRadixHindi.sort(input);
         System.out.println("After sorting: " + Arrays.toString(input));
         assertArrayEquals(expected, input);
         System.out.println();
@@ -38,7 +39,7 @@ public class MSDStringSortTest {
         final Helper<String> helper = new BaseHelper<>("test", n, 1L, Config.load(MSDStringSortTest.class));
         helper.init(n);
         String[] words = getWords("hindi.txt", MSDStringSortTest::lineAsList);
-//        MSDRadixSort.sort(words);
+        MSDRadixHindi.sort(words);
         System.out.println("Test case 2:");
         System.out.println("After sorting 2nd word must be: अंक ");
         assertEquals("अंक", words[1]);

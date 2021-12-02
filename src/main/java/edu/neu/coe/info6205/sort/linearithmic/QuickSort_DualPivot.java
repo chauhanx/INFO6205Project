@@ -1,10 +1,8 @@
 package edu.neu.coe.info6205.sort.linearithmic;
 
-import edu.neu.coe.info6205.sort.GenericSort;
 import edu.neu.coe.info6205.sort.Helper;
 import edu.neu.coe.info6205.util.Config;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -99,7 +97,5 @@ public class QuickSort_DualPivot<X extends Comparable<X>> extends QuickSort<X> {
 
         private final Helper<X> helper;
     }
-    
-   
 }
 

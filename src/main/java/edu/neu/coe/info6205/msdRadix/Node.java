@@ -21,14 +21,14 @@ public class Node {
         HanyuPinyinOutputFormat defaultFormat =  new HanyuPinyinOutputFormat();
         defaultFormat.setCaseType(HanyuPinyinCaseType.LOWERCASE);
         defaultFormat.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
-//        defaultFormat.setVCharType(HanyuPinyinVCharType.WITH_V);
         this.key = word;
         this.value = PinyinHelper.toHanYuPinyinString(word,defaultFormat,"",true);
     }
 
-    public void setKeyValue(String word)throws BadHanyuPinyinOutputFormatCombination{
-        new Node(word);
-    }
+
+//    public void setKeyValue(String word)throws BadHanyuPinyinOutputFormatCombination{
+//        new Node(word);
+//    }
 
     public String getKey(){
         return key;
