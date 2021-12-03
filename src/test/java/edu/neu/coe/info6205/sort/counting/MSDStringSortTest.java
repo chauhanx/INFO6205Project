@@ -32,6 +32,8 @@ public class MSDStringSortTest {
         assertArrayEquals(expected, input);
         System.out.println();
     }
+    
+    
 
     @Test
     public void sort1() throws IOException {
@@ -45,6 +47,28 @@ public class MSDStringSortTest {
         assertEquals("अंक", words[1]);
         System.out.println("After sorting  4th word must be: अंकुर");
         assertEquals("अंकुर", words[3]);
+    }
+    
+    @Test
+    public void sort2()
+    {
+    	
+    	
+    	assertEquals(2310,MSDRadixHindi.char_at("आके कान्हा फिर से बंशी",0));
+    	assertEquals(2325,MSDRadixHindi.char_at("आके कान्हा फिर से बंशी",1));
+    	assertEquals(-1,MSDRadixHindi.char_at("आके कान्हा फिर से बंशी",40));
+    	
+    }
+    
+    @Test
+    public void sort3()
+    {
+    	String in[]="आके कान्हा फिर से बंशी".split(" ");
+    	String aux[]=new String[input.length];
+    	MSDRadixHindi.sort(input,aux,0, input.length-1, 0);
+    	 assertArrayEquals(expected, input);
+    	
+    	
     }
 
     /**

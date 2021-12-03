@@ -7,8 +7,8 @@ import java.util.*;
 
 public class MSDRadixHindi {
 
-    static int R=4000;
-    static int S=2309 ;
+    static int R=3000;
+    static int S=0;
     static boolean isChinese = false;
 
     public static void main(String[] args) throws IOException {
@@ -20,7 +20,7 @@ public class MSDRadixHindi {
             sort(a);
             Date end = new Date();
             System.out.println(end.getTime()-start.getTime());
-            io.writeStream(a);
+            //io.writeStream(a);
         }catch(FileNotFoundException ex){
             System.out.println(ex.getMessage());
         }
@@ -32,11 +32,11 @@ public class MSDRadixHindi {
     }
 
 
-    private static int char_at(String s, int d){
+    public static int char_at(String s, int d){
         if (d < s.length()){
             if(s.charAt(d) == ' ') return 0;
             int a = (int)(s.charAt(d));
-            System.out.println(s + "  " + s.charAt(d) + "  " + a);
+            //System.out.println(s + "  " + s.charAt(d) + "  " + a);
             return a;
         }
         else return -1;
