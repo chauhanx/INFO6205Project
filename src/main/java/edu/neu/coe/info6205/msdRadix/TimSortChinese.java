@@ -1,6 +1,14 @@
-public class TimSort{
-	static int RUN = 32;
-	static boolean isChinese = false;
+package edu.neu.coe.info6205.msdRadix;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Date;
+import java.util.List;
+
+public class TimSortChinese {
+
+	static int RUN = 32;  
+	static boolean isChinese = true;
 	int min(int a, int b)    
 	{    
 	    if(a<b)    
@@ -26,23 +34,7 @@ public class TimSort{
 	        a[j+1] = temp;    
 	    }  
 	} 
-	public static void main(String[] args) {
-		String a[] = { "Apple", "Able", "Mango", "Baby" };  
-	    int n = a.length;  
-	    TimSort t1 = new TimSort();  
-	    System.out.print("\nBefore sorting array elements are - ");  
-	    t1.printArr(a, n);  
-	    t1.timSort(a, n);  
-	    System.out.print("\nAfter sorting array elements are - ");  
-	    t1.printArr(a, n);  
-	    System.out.println(); 
-		}
 	
-	void printArr(String[] a, int n)  
-	{  
-	    for (int i = 0; i < n; i++)  
-	        System.out.print(a[i] + " ");  
-	}
 	
 	void timSort(String a[], int n)  
 	{     
@@ -109,5 +101,33 @@ public class TimSort{
 	        j++;    
 	        k++;    
 	    }    
-	}  
+	}   
+	/* function to print the array elements */  
+	void printArr(int[] a, int n)  
+	{  
+	    for (int i = 0; i < n; i++)  
+	        System.out.print(a[i] + " ");  
+	} 
+	
+	public static void main(String args[]) throws IOException   
+	{  		  
+		try
+		{
+		    IOTextFile io = new IOTextFile();
+	            List<String> list = io.readStream(isChinese);
+	            String[] a = list.toArray(new String[0]);
+	            int n = a.length;
+	            TimSortChinese t1 = new TimSortChinese();
+	            Date start = new Date();
+	            t1.timSort(a, n);
+	            Date end = new Date();
+	            System.out.println(end.getTime()-start.getTime());
+	            io.writeStream(a);
+	      }
+		catch(FileNotFoundException ex)
+		{
+	            System.out.println(ex.getMessage());
+	        } 
+	} 
 }
+
