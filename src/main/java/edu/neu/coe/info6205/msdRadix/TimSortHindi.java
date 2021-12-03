@@ -36,7 +36,7 @@ public class TimSortHindi {
 	} 
 	
 	
-	void timSort(String a[], int n)  
+	public void timSort(String a[], int n)  
 	{     
 	    /* Sort individual subarrays of size RUN */  
 	    for (int i = 0; i < n; i+=RUN)  

@@ -12,6 +12,7 @@ import com.google.common.io.Resources;
 import edu.neu.coe.info6205.msdRadix.IOTextFile;
 import edu.neu.coe.info6205.msdRadix.MSDRadixHindi;
 import edu.neu.coe.info6205.msdRadix.QuickDualPivot;
+import edu.neu.coe.info6205.msdRadix.TimSortHindi;
 import edu.neu.coe.info6205.sort.Helper;
 import edu.neu.coe.info6205.sort.HelperFactory;
 import edu.neu.coe.info6205.util.Config;
@@ -77,11 +78,39 @@ public class radixMSDHindi {
 	         });
 	        System.out.println("Time taken for Hindi Quick Dual Sorted Array: "+mean);
 	}
+	
+	public void timSortHindi() {
+		
+		  String[] a = null;
+		 
+	    	 try{
+	    		 IOTextFile io = new IOTextFile();
+	             List<String> list = io.readStream(isChinese);
+	              a = list.toArray(new String[0]);
+	             String[] aux = new String[a.length];
+	             
+	         }catch(FileNotFoundException ex){
+	             System.out.println(ex.getMessage());
+	         } catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+	    	 TimSortHindi sorter = new TimSortHindi();
+	         Timer timer = new Timer();
+	         final String[] temp =a;
+	          double mean = timer.repeat(10, () -> temp, t -> {
+	        	 sorter.timSort(temp,temp.length);
+	             return null;
+	         });
+	        System.out.println("Time taken for Hindi Tim Sorted Array: "+mean);
+	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		radixMSDHindi r=new radixMSDHindi();
 		r.msdHindi();
 		r.quickDualHindi();
+		r.timSortHindi();
 	}
 
 }
