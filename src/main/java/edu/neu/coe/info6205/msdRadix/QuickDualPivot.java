@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import com.google.common.io.Resources;
 
@@ -80,18 +82,27 @@ public class QuickDualPivot {
 
     // Read strings from standard input, sort them, and print.
     public static void main(String[] args) {
-    	 String fileName = "hindi.txt";
-         URL url = Resources.getResource(fileName);
-         ArrayList<String> lines = null;
+    	 IOTextFile io = new IOTextFile();
+         List<String> list = null;
 		try {
-			lines = new ArrayList<>(Resources.readLines(url,StandardCharsets.UTF_8));
+			list = io.readStream(false);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-         String[] a = lines.toArray(new String[0]);
+         String[] a = list.toArray(new String[0]);
+        
+         Date start = new Date();
         QuickDualPivot.sort(a);
-        show(a);
+        Date end = new Date();
+        System.out.println(end.getTime()-start.getTime());
+       // show(a);
+        try {
+			io.writeStream(a);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
 }

@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import com.google.common.io.Resources;
 
-import edu.neu.coe.info6205.msdRadix.MSDRadixSort;
+import edu.neu.coe.info6205.msdRadix.MSDRadixHindi;
 import edu.neu.coe.info6205.sort.Helper;
 import edu.neu.coe.info6205.sort.HelperFactory;
 import edu.neu.coe.info6205.sort.SortWithHelper;
@@ -87,7 +87,7 @@ public class TimerTest {
     @Test
     public void getRadixsort()
     {
-    	  MSDRadixSort msdSort = new MSDRadixSort();
+    	  //MSDRadixSort msdSort = new MSDRadixSort();
     	   String[] a = null;
     	
     	 try{
@@ -110,13 +110,13 @@ public class TimerTest {
          Helper<Integer> helper = HelperFactory.create("InsertionSort", a.length, config);
          helper.init(a.length);
          final PrivateMethodTester privateMethodTester = new PrivateMethodTester(helper);
-         MSDRadixSort sorter = new MSDRadixSort();
-//         sorter.sort(a);
+         MSDRadixHindi sorter = new MSDRadixHindi();
+       // sorter.sort(a);
          
           Timer timer = new Timer();
          final String[] temp =a;
           double mean = timer.repeat(10, () -> temp, t -> {
-//        	 sorter.sort(temp);
+        	 sorter.sort(temp);
              return null;
          });
         System.out.println("Time taken for Sorted Array: "+mean);

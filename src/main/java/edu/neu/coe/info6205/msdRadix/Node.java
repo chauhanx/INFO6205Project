@@ -13,6 +13,7 @@ public class Node {
     public Node(String word){
         this.key = word;
         this.value = word;
+//        this.value = PinyinHelper.toHanYuPinyinString(word,defaultFormat,"",true);
     }
 
     public String getKey(){

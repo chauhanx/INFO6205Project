@@ -14,6 +14,7 @@ public class helper {
             for (int i = 0; i < arr.length; i++) {
                 array[i] = getPinyin(new Node(arr[i]));
             }
+           // System.out.println(array[0].getValue());
         } catch (BadHanyuPinyinOutputFormatCombination e) {
             e.printStackTrace();
         }

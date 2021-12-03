@@ -12,7 +12,7 @@ public class LSDRadixSort {
     static int S=0;
 
     // do not instantiate
-    private LSDRadixSort() { }
+    public LSDRadixSort() { }
 
 
     public static int findLongestLength(Node[] a) {

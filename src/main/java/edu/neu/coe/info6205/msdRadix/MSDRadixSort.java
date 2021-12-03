@@ -9,10 +9,13 @@ public class MSDRadixSort {
 
     static int R=256;
     static boolean isChinese = true;
+
      public static void main(String[] args) throws IOException {
         try{
             IOTextFile io = new IOTextFile();
             String[] a = io.readFileInRange("chinese.txt",999990);
+//            List<String> list = io.readStream(isChinese);
+//            String[] a = list.toArray(new String[0]);
             Date start = new Date();
             sort(a);
             Date end = new Date();
@@ -23,13 +26,7 @@ public class MSDRadixSort {
         }
     }
 
-//    to get character based on pinyin
-    private static int char_at(String s, int d){
-        if (d < s.length()) return (int)s.charAt(d);
-        return -1;
-    }
-
-    public static void sort(String[] arr){
+    public static void sort(String[] arr) {
         Node[] aux = new Node[arr.length];
         Node[] array = helper.getChinesePair(arr);
 
@@ -40,7 +37,7 @@ public class MSDRadixSort {
         }
     }
 
-    public static void sort(Node[] arr,Node[] aux,int low,int high,int d){
+    private static void sort(Node[] arr, Node[] aux, int low, int high, int d) {
         if (high <= low )return;
         int[] count = new int[R+2];
 
@@ -64,6 +61,13 @@ public class MSDRadixSort {
         for(int r=0;r<R;r++){
             sort(arr,aux,low+count[r],low+count[r+1]-1,d+1);
         }
+    }
+
+    //    to get character based on pinyin
+    private static int char_at(String s, int d) {
+        if (d < s.length()) return (int) s.charAt(d);
+        return -1;
+
     }
 
 }
