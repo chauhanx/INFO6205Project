@@ -32,7 +32,7 @@ public class MSDRadixHindi {
     }
 
 
-    private static int char_at(String s, int d){
+    public static int char_at(String s, int d){
         if (d < s.length()){
             if(s.charAt(d) == ' ') return 0;
             int a = (int)(s.charAt(d));
