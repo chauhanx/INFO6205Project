@@ -25,7 +25,7 @@ public class MSDRadixSort {
         }
     }
 
-    private static void sort(String[] arr) {
+    public static void sort(String[] arr) {
         Node[] aux = new Node[arr.length];
         Node[] array = helper.getChinesePair(arr);
 
@@ -36,7 +36,7 @@ public class MSDRadixSort {
         }
     }
 
-    private static void sort(Node[] arr, Node[] aux, int i, int i1, int i2) {
+    private static void sort(Node[] arr, Node[] aux, int low, int high, int d) {
         if (high <= low )return;
         int[] count = new int[R+2];
 
@@ -63,11 +63,11 @@ public class MSDRadixSort {
     }
 
     //    to get character based on pinyin
-    private static int char_at(String s, int d){
-        if (d < s.length()) return (int)s.charAt(d);
+    private static int char_at(String s, int d) {
+        if (d < s.length()) return (int) s.charAt(d);
         return -1;
 
-
+    }
 //    private static void sort(Node[] arr,Node[] aux,int low,int high,int d){
 //        if (high <= low )return;
 //        int[] count = new int[R+2];
