@@ -23,6 +23,7 @@ public class Node {
         defaultFormat.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
         this.key = word;
         this.value = PinyinHelper.toHanYuPinyinString(word,defaultFormat,"",true);
+        
     }
 
 

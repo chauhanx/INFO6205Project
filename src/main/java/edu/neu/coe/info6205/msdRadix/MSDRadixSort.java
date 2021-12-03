@@ -16,6 +16,7 @@ public class MSDRadixSort {
             IOTextFile io = new IOTextFile();
             List<String> list = io.readStream(isChinese);
             String[] a = list.toArray(new String[0]);
+           // System.out.println(a[0]);
             Date start = new Date();
             sort(a);
             Date end = new Date();
@@ -35,6 +36,7 @@ public class MSDRadixSort {
     private static int pinyinCharAt(Node s, int d){
         if (d < s.getValue().length()){
             int a = (int)s.getValue().charAt(d);
+          // System.out.println(a);
             return a;
         }
         else return -1;
