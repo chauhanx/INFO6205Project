@@ -2,10 +2,7 @@ package edu.neu.coe.info6205.msdRadix;
 
 import com.google.common.io.Resources;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -25,6 +22,23 @@ public class IOTextFile {
             System.out.println(ex.getMessage());
             return null;
         }
+    }
+
+    public static String[] readFileInRange(String fileName,int length) throws IOException {
+        String[] words=new String[length];
+
+        try (BufferedReader read= new BufferedReader(new FileReader(fileName))){
+            String line=null;
+            for(int i=0;i<length;i++){
+                if((line=read.readLine()) != null){
+                    words[i] = line;
+                }
+            }
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        return words;
+
     }
 
 
