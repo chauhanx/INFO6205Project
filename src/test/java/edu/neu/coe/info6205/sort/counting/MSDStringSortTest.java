@@ -1,7 +1,6 @@
 package edu.neu.coe.info6205.sort.counting;
 
 import edu.neu.coe.info6205.msdRadix.MSDRadixHindi;
-import edu.neu.coe.info6205.msdRadix.MSDRadixSort;
 import edu.neu.coe.info6205.sort.BaseHelper;
 import edu.neu.coe.info6205.sort.Helper;
 import edu.neu.coe.info6205.util.Config;
@@ -52,12 +51,9 @@ public class MSDStringSortTest {
     @Test
     public void sort2()
     {
-    	
-    	
-    	assertEquals(2310,MSDRadixHindi.char_at("आके कान्हा फिर से बंशी",0));
-    	assertEquals(2325,MSDRadixHindi.char_at("आके कान्हा फिर से बंशी",1));
-    	assertEquals(-1,MSDRadixHindi.char_at("आके कान्हा फिर से बंशी",40));
-    	
+    	assertEquals(2310,MSDRadixHindi.char_at("आके",0));
+    	assertEquals(2325,MSDRadixHindi.char_at("आके",1));
+    	assertEquals(-1,MSDRadixHindi.char_at("आके",40));
     }
     
     @Test
@@ -67,8 +63,7 @@ public class MSDStringSortTest {
     	String aux[]=new String[input.length];
     	MSDRadixHindi.sort(input,aux,0, input.length-1, 0);
     	 assertArrayEquals(expected, input);
-    	
-    	
+
     }
 
     /**
