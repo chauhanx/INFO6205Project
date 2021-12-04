@@ -8,7 +8,7 @@ import java.util.*;
 public class MSDRadixHindi {
 
     static int R=3000;
-    static int S=0;
+    static int S=2000;
     static boolean isChinese = false;
 
     public static void main(String[] args) throws IOException {
@@ -57,7 +57,7 @@ public class MSDRadixHindi {
             int c =  char_at(arr[i],d);
             count[c+2]++;
         }
-        for(int r=0;r<R;r++){
+        for(int r=S;r<R;r++){
             count[r+1] += count[r];
         }
 
@@ -68,7 +68,7 @@ public class MSDRadixHindi {
         for(int i=low;i<=high;i++){
             arr[i] = aux[i-low];
         }
-        for(int r=0;r<R;r++){
+        for(int r=S;r<R;r++){
             sort(arr,aux,low+count[r],low+count[r+1]-1,d+1);
         }
 
