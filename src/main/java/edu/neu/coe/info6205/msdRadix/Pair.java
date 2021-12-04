@@ -18,8 +18,7 @@ public class Pair {
     public Pair(String word){
         this.key = word;
         this.value = collator.getCollationKey(word).toByteArray();
-        this.uniValue = word;
-//        this.value = PinyinHelper.toHanYuPinyinString(word,defaultFormat,"",true);
+        this.uniValue = helper.getPinyin(word);
     }
 
     public String getKey(){

@@ -18,21 +18,22 @@ public class Benchmark {
     final static String fileName = "chinese.txt";
     static List<Double> xData = new ArrayList<>();
     static List<List<Double>> yData = new ArrayList<>();
+    static int initial = 250000;
 
 
     private static void startBenchMark() throws IOException {
         try{
             System.out.println("Processing benchmarking ...");
             IOTextFile io = new IOTextFile();
-//            int[] length = {250000};
-            int[] length = {250000,500000,1000000,2000000};
-            int totalAlgos = 3;
+//            int[] length = {initial};
+            int[] length = {initial,2*initial,4*initial};
+            int totalAlgos = 4;
             for(int i=0;i<totalAlgos;i++){
                 yData.add(new ArrayList<>());
             }
 
             for(int l:length){
-                xData.add((double) l);
+                xData.add((double)(l));
                 String[] words;
                 if(l <= 1000000){
                     words = io.readFileInRange(fileName,l);
@@ -52,7 +53,7 @@ public class Benchmark {
         }
 
         createChart();
-
+        getChart();
     }
 
 
@@ -60,20 +61,9 @@ public class Benchmark {
         Timer timer;
         double mean;
         String type;
-        int runs = 1;
-//      MSD Benchmark
-//        type = "MSD Radix";
-//        timer = new Timer();
-//        final String[] msdTemp = Arrays.copyOf(words,words.length);
-//        MSDRadixSort msdSorter = new MSDRadixSort();
-//        mean = timer.repeat(10, () -> msdTemp, t -> {
-//            msdSorter.sort(msdTemp);
-//            return null;
-//        });
-//        yData.get(0).add(mean);
-//        System.out.println("Time taken for "+type+" for "+ runs +" runs to sort "+words.length + " array size: "+mean);
+        int runs = 10;
 
-        //      Tim Sort Benchmark
+//      Tim Sort Benchmark
         type = "Tim";
         timer = new Timer();
         final String[] tmp1 = Arrays.copyOf(words,words.length);
@@ -86,12 +76,13 @@ public class Benchmark {
         System.out.println("Time taken for "+type+" to sort "+words.length + " array size: "+mean);
 
 
-        type = "MSD Radix";
+//        MSD Benchmark
+        type = "MSD Radix new ";
         timer = new Timer();
-        final String[] tmp2 = Arrays.copyOf(words,words.length);
-        MSDRadixSort MSDRadixSortSorter1 = new MSDRadixSort();
-        mean = timer.repeat(runs, () -> tmp2, t -> {
-            MSDRadixSortSorter1.sort(tmp2);
+        final String[] tmp4 = Arrays.copyOf(words,words.length);
+        MSDRadixSort msdSo = new MSDRadixSort();
+        mean = timer.repeat(runs, () -> tmp4, t -> {
+            msdSo.sort(tmp4);
             return null;
         });
         yData.get(1).add(mean);
@@ -112,16 +103,16 @@ public class Benchmark {
 
 
 //      QuickSOrt Pivot Benchmark
-//        type = "QuickDual Pivot";
-//        timer = new Timer();
-//        final String[] quickTemp = Arrays.copyOf(words,words.length);
-//        QuickDualPivotC quickSortter = new QuickDualPivotC();
-//        mean = timer.repeat(runs, () -> quickTemp, t -> {
-//            quickSortter.sort(quickTemp);
-//            return null;
-//        });
-//        yData.get(3).add(mean);
-//        System.out.println("Time taken for "+type+" to sort "+words.length + " array size: "+mean);
+        type = "QuickDual Pivot";
+        timer = new Timer();
+        final String[] tmpQuick = Arrays.copyOf(words,words.length);
+        QuickDualPivotC qs = new QuickDualPivotC();
+        mean = timer.repeat(1, () -> tmpQuick, t -> {
+            qs.sort(tmpQuick);
+            return null;
+        });
+        yData.get(3).add(mean);
+        System.out.println("Time taken for "+type+" to sort "+words.length + " array size: "+mean);
 
 
     }
@@ -132,6 +123,7 @@ public class Benchmark {
         // Customize Chart
         chart.getStyler().setPlotGridLinesVisible(false);
         chart.getStyler().setXAxisTickMarkSpacingHint(100);
+        chart.getStyler().setXAxisLabelRotation(45);
 
         XYSeries series = chart.addSeries("MSD Radix", xData,yData.get(1));
         series.setMarker(SeriesMarkers.DIAMOND);
@@ -139,12 +131,32 @@ public class Benchmark {
         series.setMarker(SeriesMarkers.PLUS);
         series = chart.addSeries("Tim Sort", xData,yData.get(0));
         series.setMarker(SeriesMarkers.PLUS);
+        series = chart.addSeries("QuickDual Pivot", xData,yData.get(3));
+        series.setMarker(SeriesMarkers.PLUS);
         new SwingWrapper<XYChart>(chart).displayChart();
         BitmapEncoder.saveBitmapWithDPI(chart, "./SortAlgoChart", BitmapEncoder.BitmapFormat.PNG, 300);
+    }
+
+//    @Override
+    public static void getChart() {
+
+        // Create Chart
+        CategoryChart chart = new CategoryChartBuilder().width(800).height(600).title("Sorting algorithms").xAxisTitle("Array Size").yAxisTitle("Time").theme(Styler.ChartTheme.GGPlot2).build();
+
+        // Customize Chart
+        String size[] = {"25","50k","1M","2M"};
+        // Series
+        chart.addSeries("Tim", new ArrayList<Double>(xData), new ArrayList<Double>(yData.get(0)));
+        chart.addSeries("MSD Radix", new ArrayList<Double>(xData), new ArrayList<Double>(yData.get(1)));
+        chart.addSeries("LSD Radix", new ArrayList<Double>(xData), new ArrayList<Double>(yData.get(2)));
+        chart.addSeries("Quick DualPivot", new ArrayList<Double>(xData), new ArrayList<Double>(yData.get(3)));
+
+        new SwingWrapper<CategoryChart>(chart).displayChart();
     }
 
 
     public static void main(String[] args) throws IOException {
         startBenchMark();
+
     }
 }

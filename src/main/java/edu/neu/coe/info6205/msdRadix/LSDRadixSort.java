@@ -13,28 +13,27 @@ public class LSDRadixSort {
     public LSDRadixSort() { }
 
 
-    public static int findLongestLength(Pair[] a) {
+    public static int findLongestLength(String[] a) {
         int longest = 0;
         for (int i = 0; i < a.length; ++i) {
-            if (a[i].getArr().length > longest) {
-                longest = a[i].getArr().length;
+            if (a[i].length() > longest) {
+                longest = a[i].length();
             }
         }
         return longest;
     }
 
-    public static int getCharIndex(int d, int i, Pair[] a) {
-        if (d < 0 || d >= a[i].getArr().length) {
+    public static int getCharIndex(int d, int i, String[] a) {
+        if (d < 0 || d >= a[i].length()) {
             return 0;
         }
-        // to prevent current index out of bound
-        return a[i].getArr()[d]& 0xFF;
+        return a[i].charAt(d);
     }
 
 
-    private static void sort(Pair[] arr, int length) {
+    private static void sort(String[] arr, int length) {
         int n = arr.length;
-        Pair[] aux = new Pair[arr.length];
+        String[] aux = new String[arr.length];
 
         for (int i = length-1; i >= 0; i--) {
             int[] count = new int[R+1];
@@ -55,12 +54,11 @@ public class LSDRadixSort {
     }
 
     public static void sort(String[] arr){
-        Pair[] array = helper.getChinesePair(arr);
-        int longestLength = findLongestLength(array);
-        sort(array,longestLength);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = array[i].getKey();
+        for(int i=0;i<arr.length;i++){
+            arr[i] = helper.getPinyin(arr[i]);
         }
+        int longestLength = findLongestLength(arr);
+        sort(arr,longestLength);
     }
 
     public static void main(String[] args) throws IOException {

@@ -41,4 +41,17 @@ public class helper {
         return collator.compare(str1, str2);
     }
 
+
+    public static String getPinyin(String s)  {
+        try {
+            HanyuPinyinOutputFormat format = new HanyuPinyinOutputFormat();
+            format.setCaseType(HanyuPinyinCaseType.LOWERCASE);
+            format.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
+            String str = PinyinHelper.toHanYuPinyinString(s, format, "", false);
+            return str;
+        }catch (BadHanyuPinyinOutputFormatCombination ex){
+            return null;
+        }
+    }
+
 }
