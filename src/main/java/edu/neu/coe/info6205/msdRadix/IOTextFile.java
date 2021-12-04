@@ -66,6 +66,6 @@ public class IOTextFile {
     }
 
     private String getInputFileName(){
-        return isChinese ? "chinese.txt":"hindi.txt";
+        return isChinese ? "chinese.txt":"hindiWords.txt";
     }
 }
