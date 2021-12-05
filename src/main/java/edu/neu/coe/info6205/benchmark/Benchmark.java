@@ -7,13 +7,14 @@ import java.util.Arrays;
 import java.util.List;
 
 import edu.neu.coe.info6205.charts.Charts;
+import edu.neu.coe.info6205.huskySort.PureHuskySort;
+import edu.neu.coe.info6205.huskySortUtils.HuskyCoderFactory;
 import edu.neu.coe.info6205.msdRadix.*;
 import edu.neu.coe.info6205.util.Timer;
 
 
 public class Benchmark {
 
-    final static String fileName = "chinese.txt";
     static List<Double> xData = new ArrayList<>();
     static List<List<Double>> yData = new ArrayList<>();
     static int initial = 250000;
@@ -23,8 +24,8 @@ public class Benchmark {
         try{
             System.out.println("Processing benchmarking ...");
             IOTextFile io = new IOTextFile();
-//            int[] length = {initial};
-            int[] length = {initial,2*initial,4*initial};
+            int[] length = {initial};
+//            int[] length = {initial,2*initial,4*initial};
             int totalAlgos = 4;
             for(int i=0;i<totalAlgos;i++){
                 yData.add(new ArrayList<>());
@@ -33,12 +34,12 @@ public class Benchmark {
             for(int l:length){
                 xData.add((double)(l));
                 String[] words;
-                if(l <= 1000000){
-                    words = io.readFileInRange(fileName,l);
+                if(l <= 4*initial){
+                    words = io.readFileStreamByLength(true,l);
                 }else{
                     words = new String[l];
-                    for (int j = 0; j < l / 1000000; j++) {
-                        System.arraycopy(io.readFileInRange("chinese.txt", 1000000), 0, words, j * 1000000, 1000000);
+                    for (int j = 0; j < l / 4*initial; j++) {
+                        System.arraycopy(io.readFileStreamByLength(true, 4*initial), 0, words, j * 4*initial, 4*initial);
                     }
                 }
 
@@ -108,6 +109,19 @@ public class Benchmark {
         QuickDualPivotC qs = new QuickDualPivotC();
         mean = timer.repeat(1, () -> tmpQuick, t -> {
             qs.sort(tmpQuick);
+            return null;
+        });
+        yData.get(3).add(mean);
+        System.out.println("Time taken for "+type+" to sort "+words.length + " array size: "+mean);
+
+
+//      TimSort Benchmark
+        type = "Husky Sort";
+        timer = new Timer();
+        final String[] tmphusky = Arrays.copyOf(words,words.length);
+        PureHuskySort hs = new PureHuskySort<>(HuskyCoderFactory.asciiCoder, false, false);
+        mean = timer.repeat(1, () -> tmphusky, t -> {
+            hs.sort(tmphusky);
             return null;
         });
         yData.get(3).add(mean);

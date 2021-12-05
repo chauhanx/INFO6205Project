@@ -2,6 +2,7 @@ package edu.neu.coe.info6205.msdRadix;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -114,15 +115,11 @@ public class TimSortHindi {
 		try
 		{
 		    IOTextFile io = new IOTextFile();
-	            List<String> list = io.readStream(isChinese);
-	            String[] a = list.toArray(new String[0]);
-	            int n = a.length;
-	            TimSortHindi t1 = new TimSortHindi();
-	            Date start = new Date();
-	            t1.timSort(a, n);
-	            Date end = new Date();
-	            System.out.println(end.getTime()-start.getTime());
-	            io.writeStream(a);
+			String[] a = io.readFileStreamByLength(isChinese,20);
+			int n = a.length;
+			TimSortHindi t1 = new TimSortHindi();
+			t1.timSort(a, n);
+			System.out.println(Arrays.toString(a));
 	   	}
 		catch(FileNotFoundException ex)
 		{

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import com.google.common.io.Resources;
 import edu.neu.coe.info6205.graphs.BFS_and_prims.StdRandom;
 
 public class QuickDualPivot {
+    static boolean isChinese = false;
 
     // quicksort the array a[] using dual-pivot quicksort
     public static void sort(Comparable[] a) {
@@ -81,21 +83,12 @@ public class QuickDualPivot {
     }
 
     // Read strings from standard input, sort them, and print.
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
     	 IOTextFile io = new IOTextFile();
-         List<String> list = null;
-		try {
-			list = io.readStream(false);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-         String[] a = list.toArray(new String[0]);
-        
-         Date start = new Date();
+        String[] a = io.readFileStreamByLength(isChinese,20);
+
         QuickDualPivot.sort(a);
-        Date end = new Date();
-        System.out.println(end.getTime()-start.getTime());
+        System.out.println(Arrays.toString(a));
        // show(a);
         try {
 			io.writeStream(a);

@@ -4,12 +4,13 @@ package edu.neu.coe.info6205.msdRadix;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
-    public class LSDRadixHindi {
+public class LSDRadixHindi {
 
         static boolean isChinese = false;
-        static int R=30000;
-        static int S=0;
+        static int R=3000;
+        static int S=2000;
 
         public static int findLongestLength(String[] a) {
             int longest = 0;
@@ -28,7 +29,12 @@ import java.util.ArrayList;
             return a[i].charAt(d);
         }
 
-        public static void sort(String[] arr, int length) {
+        public static void sort(String[] arr) {
+            int longestLength = findLongestLength(arr);
+            sort(arr,longestLength);
+        }
+
+        private static void sort(String[] arr, int length) {
             int n = arr.length;
             int R = 65536;   // extend ASCII alphabet size
             String[] aux = new String[n];
@@ -64,16 +70,11 @@ import java.util.ArrayList;
 
         public static void main(String[] args) throws IOException {
             try{
-
                 IOTextFile io = new IOTextFile();
-                ArrayList<String> lines = io.readStream(isChinese);
-                String[] arr = lines.toArray(new String[0]);
-                // check that strings have fixed length
-                int longestLength = findLongestLength(arr);
+                String[] arr = io.readFileStreamByLength(isChinese,20);
                 // sort the strings
-                sort(arr, longestLength);
-                System.out.println("dalkal");
-                io.writeStream(arr);
+                sort(arr);
+                System.out.println(Arrays.toString(arr));
             }catch(FileNotFoundException ex){
                 System.out.println(ex.getMessage());
             }

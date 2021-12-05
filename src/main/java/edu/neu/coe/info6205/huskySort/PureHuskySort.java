@@ -13,7 +13,6 @@ import edu.neu.coe.info6205.msdRadix.IOTextFile;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
-import java.util.List;
 import java.text.Collator;
 
 import static java.util.Arrays.binarySearch;
@@ -32,17 +31,12 @@ public class PureHuskySort<X extends Comparable<X>> {
 	static boolean isChinese = false;
     
 	public static void main(final String[] args) throws IOException {
-    	try
-		{
+    	try {
 				IOTextFile io = new IOTextFile();
-	            List<String> list = io.readStream(isChinese);
-	            String[] a = list.toArray(new String[0]);
+                String[] a = io.readFileStreamByLength(isChinese,20);
 	            final PureHuskySort<String> sorter = new PureHuskySort<>(HuskyCoderFactory.asciiCoder, false, false);
-	            Date start = new Date();
 	            sorter.sort(a);
-	            Date end = new Date();
-	            System.out.println(end.getTime()-start.getTime());
-	            io.writeStream(a);
+            System.out.println(Arrays.toString(a));
 	   }
 		catch(FileNotFoundException ex)
 		{
@@ -99,6 +93,10 @@ public class PureHuskySort<X extends Comparable<X>> {
         this.huskyCoder = huskyCoder;
         this.mayBeSorted = mayBeSorted;
         this.useInsertionSort = useInsertionSort;
+    }
+
+    public PureHuskySort() {
+        this((HuskyCoder<X>) HuskyCoderFactory.asciiCoder,false,false);
     }
 
     // CONSIDER invoke method in IntroSort

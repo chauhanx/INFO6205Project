@@ -24,9 +24,10 @@ public class IOTextFile {
         }
     }
 
-    public static String[] readFileInRange(String fileName,int length) throws IOException {
+    public  String[] readFileStreamByLength(boolean isChinese, int length) throws IOException {
+        this.isChinese = isChinese;
         String[] words=new String[length];
-        URL url = Resources.getResource(fileName);
+        URL url = Resources.getResource(getInputFileName());
         try (BufferedReader read= new BufferedReader(new FileReader(url.getFile()))){
             String line=null;
             for(int i=0;i<length;i++){

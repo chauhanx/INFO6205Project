@@ -64,7 +64,7 @@ public class LSDRadixSort {
     public static void main(String[] args) throws IOException {
         try{
             IOTextFile io = new IOTextFile();
-            String[] arr = io.readFileInRange("chinese.txt",250000);
+            String[] arr = io.readFileStreamByLength(isChinese,250000);
             sort(arr);
 //            System.out.println(Arrays.toString(arr));
         }catch(FileNotFoundException ex){

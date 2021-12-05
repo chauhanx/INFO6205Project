@@ -11,7 +11,7 @@ public class MSDRadixSort {
      public static void main(String[] args) throws IOException {
         try{
             IOTextFile io = new IOTextFile();
-            String[] a =  io.readFileInRange("chinese.txt",2000);
+            String[] a =  io.readFileStreamByLength(isChinese,2000);
             sort(a);
             System.out.println(Arrays.toString(a));
         }catch(FileNotFoundException ex){

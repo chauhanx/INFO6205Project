@@ -22,14 +22,17 @@ public class Charts {
         chart.getStyler().setXAxisTickMarkSpacingHint(100);
         chart.getStyler().setXAxisLabelRotation(45);
 
-        XYSeries series = chart.addSeries("MSD Radix", xData,yData.get(1));
-        series.setMarker(SeriesMarkers.DIAMOND);
-        series = chart.addSeries("LSD Radix", xData,yData.get(2));
-        series.setMarker(SeriesMarkers.PLUS);
-        series = chart.addSeries("Tim Sort", xData,yData.get(0));
-        series.setMarker(SeriesMarkers.PLUS);
-        series = chart.addSeries("QuickDual Pivot", xData,yData.get(3));
-        series.setMarker(SeriesMarkers.PLUS);
+        XYSeries series0 = chart.addSeries("Tim Sort", xData,yData.get(0));
+        series0.setMarker(SeriesMarkers.PLUS);
+        XYSeries series1 = chart.addSeries("MSD Radix", xData,yData.get(1));
+        series1.setMarker(SeriesMarkers.DIAMOND);
+        XYSeries series2 = chart.addSeries("LSD Radix", xData,yData.get(2));
+        series2.setMarker(SeriesMarkers.PLUS);
+        XYSeries series3 = chart.addSeries("QuickDual Pivot", xData,yData.get(3));
+        series3.setMarker(SeriesMarkers.DIAMOND);
+        XYSeries series4 = chart.addSeries("Husky SOrt", xData,yData.get(4));
+        series4.setMarker(SeriesMarkers.PLUS);
+
         new SwingWrapper<XYChart>(chart).displayChart();
         BitmapEncoder.saveBitmapWithDPI(chart, "./SortAlgoChart", BitmapEncoder.BitmapFormat.PNG, 300);
     }
@@ -47,6 +50,7 @@ public class Charts {
         chart.addSeries("MSD Radix", new ArrayList<Double>(xData), new ArrayList<Double>(yData.get(1)));
         chart.addSeries("LSD Radix", new ArrayList<Double>(xData), new ArrayList<Double>(yData.get(2)));
         chart.addSeries("Quick DualPivot", new ArrayList<Double>(xData), new ArrayList<Double>(yData.get(3)));
+        chart.addSeries("Husky", new ArrayList<Double>(xData), new ArrayList<Double>(yData.get(4)));
 
         new SwingWrapper<CategoryChart>(chart).displayChart();
     }

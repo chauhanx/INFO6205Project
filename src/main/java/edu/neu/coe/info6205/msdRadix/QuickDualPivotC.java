@@ -1,9 +1,9 @@
 package edu.neu.coe.info6205.msdRadix;
 
 import java.io.IOException;
-import java.util.Arrays;
 
 public class QuickDualPivotC {
+    final static boolean isChinese = true;
 
     // quicksort the array a[] using dual-pivot quicksort
     public static void sort(String[] a) {
@@ -45,7 +45,8 @@ public class QuickDualPivotC {
 
     // Read strings from standard input, sort them, and print.
     public static void main(String[] args) throws IOException {
-        String[] a = new IOTextFile().readFileInRange("chinese.txt",1000000);
+        IOTextFile io = new IOTextFile();
+        String[] a = io.readFileStreamByLength(isChinese,1000000);
         QuickDualPivotC q = new QuickDualPivotC();
         q.sort(a);
 //        System.out.println(Arrays.toString(a));
