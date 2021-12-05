@@ -20,6 +20,10 @@ public class Utilities {
         return ts.toArray(result);
     }
 
+    public static <T extends Comparable<T>> boolean isSorted(T[] ts) {
+        for (int i = 1; i < ts.length; i++) if (ts[i - 1].compareTo(ts[i]) > 0) return false;
+        return true;
+    }
     /**
      * Create a string representing an double, with three decimal places.
      *
