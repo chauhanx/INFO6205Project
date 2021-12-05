@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import edu.neu.coe.info6205.charts.Charts;
-//import edu.neu.coe.info6205.huskySort.PureHuskySort;
+import edu.neu.coe.info6205.huskySort.PureHuskySort;
 import edu.neu.coe.info6205.msdRadix.*;
 import edu.neu.coe.info6205.util.Timer;
 
@@ -24,8 +24,8 @@ public class BenchmarkHindi {
             System.out.println("Benchmarking for Hindi Words");
             System.out.println("Processing benchmarking ...");
             IOTextFile io = new IOTextFile();
-            int[] length = {initial,2*initial};
-//            int[] length = {initial,2*initial,4*initial,8*initial,16*initial};
+//            int[] length = {initial,2*initial,4*initial};
+            int[] length = {initial,2*initial,4*initial,8*initial,16*initial};
             int totalAlgos = 5;
             for(int i=0;i<totalAlgos;i++){
                 yData.add(new ArrayList<>());
@@ -114,16 +114,16 @@ public class BenchmarkHindi {
 
 
 //      Pure Husky Sort
-//        type = "Husky Sort";
-//        timer = new Timer();
-//        final String[] quickTemp = Arrays.copyOf(words,words.length);
-//        PureHuskySort hs = new PureHuskySort<>();
-//        mean = timer.repeat(runs, () -> quickTemp, t -> {
-//            hs.sort(quickTemp);
-//            return null;
-//        });
-//        yData.get(4).add(mean);
-//        System.out.println("Time taken for "+type+" to sort "+words.length + " array size: "+mean);
+        type = "Husky Sort";
+        timer = new Timer();
+        final String[] quickTemp = Arrays.copyOf(words,words.length);
+        PureHuskySort hs = new PureHuskySort();
+        mean = timer.repeat(runs, () -> quickTemp, t -> {
+            hs.sort(quickTemp);
+            return null;
+        });
+        yData.get(4).add(mean);
+        System.out.println("Time taken for "+type+" to sort "+words.length + " array size: "+mean);
 
     }
 

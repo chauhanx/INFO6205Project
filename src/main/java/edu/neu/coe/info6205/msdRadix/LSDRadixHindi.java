@@ -9,9 +9,8 @@ import java.util.Arrays;
 public class LSDRadixHindi {
 
         static boolean isChinese = false;
-        static int R=3000;
+        static int R=400;
         static int S=2000;
-
         public static int findLongestLength(String[] a) {
             int longest = 0;
             for (int i = 0; i < a.length; ++i) {
@@ -26,7 +25,7 @@ public class LSDRadixHindi {
             if (d < 0 || d >= a[i].length()) {
                 return 0;
             }
-            return a[i].charAt(d);
+            return a[i].charAt(d)-2300;
         }
 
         public static void sort(String[] arr) {
@@ -36,16 +35,15 @@ public class LSDRadixHindi {
 
         private static void sort(String[] arr, int length) {
             int n = arr.length;
-//            int R = 65536;   // extend ASCII alphabet size
             String[] aux = new String[n];
 
             for (int i = length-1; i >= 0; i--) {
 
                 // compute frequency counts
                 int[] count = new int[R+1];
-
                 for (int j = 0; j < n; j++) {
                     int ch = findCharAtInString(j, i, arr);
+//                    System.out.println("ch " + ch +   "  " + arr[j].charAt(i));
                     count[ch + 1]++;
                 }
 
@@ -71,10 +69,11 @@ public class LSDRadixHindi {
         public static void main(String[] args) throws IOException {
             try{
                 IOTextFile io = new IOTextFile();
-                String[] arr = io.readFileStreamByLength(isChinese,20);
+                String[] arr = io.readFileStreamByLength(isChinese,200);
                 // sort the strings
                 sort(arr);
-                System.out.println(Arrays.toString(arr));
+//                System.out.println(Arrays.toString(arr));
+                io.writeStream(arr);
             }catch(FileNotFoundException ex){
                 System.out.println(ex.getMessage());
             }

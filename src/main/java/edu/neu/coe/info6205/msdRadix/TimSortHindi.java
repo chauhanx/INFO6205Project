@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-public class TimSort {
+public class TimSortHindi {
 
 	static int RUN = 32;  
 	static boolean isChinese = false;
@@ -109,10 +109,9 @@ public class TimSort {
 	} 
 	
 	/* function to print the array elements */  
-	void printArr(int[] a, int n)  
-	{  
-	    for (int i = 0; i < n; i++)  
-	        System.out.print(a[i] + " ");  
+	public static void sort(String[] a){
+		int n = a.length;
+		timSort(a, n);
 	} 
 	
 	public static void main(String args[]) throws IOException   
@@ -120,14 +119,10 @@ public class TimSort {
 		try
 		{
 		    IOTextFile io = new IOTextFile();
-	            List<String> list = io.readStream(isChinese);
-	            String[] a = list.toArray(new String[0]);	            
-	            int n = a.length;
-	            Date start = new Date();
-	            timSort(a, n);
-	            Date end = new Date();
-	            System.out.println(end.getTime()-start.getTime());
-	            io.writeStream(a);
+			String[] a = io.readFileStreamByLength(isChinese,200);
+			sort(a);
+//			System.out.println(Arrays.toString(a));
+			io.writeStream(a);
 	   }
 		catch(FileNotFoundException ex)
 		{

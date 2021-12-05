@@ -1,19 +1,10 @@
 package edu.neu.coe.info6205.sort.counting;
 
 
-import edu.neu.coe.info6205.msdRadix.TimSort;
-import edu.neu.coe.info6205.sort.BaseHelper;
-import edu.neu.coe.info6205.sort.Helper;
-import edu.neu.coe.info6205.util.Config;
+import edu.neu.coe.info6205.msdRadix.TimSortHindi;
 import org.junit.Test;
 
-import java.io.*;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -26,7 +17,7 @@ public class TimSortTest {
     public void sort() {
         System.out.println("Test case 1:");
         System.out.println("Before sorting: " + Arrays.toString(input));
-        TimSort.timSort(input,input.length);
+        TimSortHindi.timSort(input,input.length);
         System.out.println("After sorting: " + Arrays.toString(input));
         assertArrayEquals(expected, input);
         System.out.println();
@@ -36,7 +27,7 @@ public class TimSortTest {
     public void sort1() {
         System.out.println("Test case 1:");
         System.out.println("Before sorting: " + Arrays.toString(input));
-        TimSort.insertionSort(input, 0, 21);
+        TimSortHindi.insertionSort(input, 0, 21);
         System.out.println("After sorting: " + Arrays.toString(input));
         assertArrayEquals(expected, input);
         System.out.println();

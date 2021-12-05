@@ -7,16 +7,17 @@ import java.util.*;
 
 public class MSDRadixHindi {
 
-    static int R=3000;
+    static int R=400;
     static int S=0;
     static boolean isChinese = false;
 
     public static void main(String[] args) throws IOException {
         try{
             IOTextFile io = new IOTextFile();
-            String[] a = io.readFileStreamByLength(isChinese,20);
+            String[] a = io.readFileStreamByLength(isChinese,200);
             sort(a);
-            System.out.println(Arrays.toString(a));
+//            System.out.println(Arrays.toString(a));
+            io.writeStream(a);
         }catch(FileNotFoundException ex){
             System.out.println(ex.getMessage());
         }
@@ -32,7 +33,7 @@ public class MSDRadixHindi {
         if (d < s.length()){
             int a = (int)s.charAt(d);
             
-            return a;
+            return a-2300;
         }
         else return -1;
     }
@@ -71,10 +72,3 @@ public class MSDRadixHindi {
     }
 
 }
-
-//msd//lsd//husky//tim//quick
-//[अं, अंकुर, उन्नति, क, कपोत, कहने, गूंज, गौ, झा, तेलुगु, पर्सनेलिटी, पॉड, प्रयोजनों, बारिस, लोकतांत्रिक, वाइसराय, विभोर, सम्बंधों, सर्वत्र, हटाने]
-//[अं, अंकुर, उन्नति, क, कपोत, कहने, गूंज, गौ, झा, तेलुगु, पर्सनेलिटी, पॉड, प्रयोजनों, बारिस, लोकतांत्रिक, वाइसराय, विभोर, सम्बंधों, सर्वत्र, हटाने]
-//[अं, अंकुर, उन्नति, क, कपोत, कहने, गूंज, गौ, झा, तेलुगु, पर्सनेलिटी, पॉड, प्रयोजनों, बारिस, लोकतांत्रिक, वाइसराय, विभोर, सम्बंधों, सर्वत्र, हटाने]
-//[अं, अंकुर, उन्नति, क, कपोत, कहने, गूंज, गौ, झा, तेलुगु, पर्सनेलिटी, पॉड, प्रयोजनों, बारिस, लोकतांत्रिक, वाइसराय, विभोर, सम्बंधों, सर्वत्र, हटाने]
-//[अं, अंकुर, उन्नति, क, कपोत, कहने, गूंज, गौ, झा, तेलुगु, पर्सनेलिटी, पॉड, प्रयोजनों, बारिस, लोकतांत्रिक, वाइसराय, विभोर, सम्बंधों, सर्वत्र, हटाने]

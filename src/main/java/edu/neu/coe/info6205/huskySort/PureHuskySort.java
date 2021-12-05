@@ -34,15 +34,11 @@ public class PureHuskySort<X extends Comparable<X>> {
     	try
 		{
 				IOTextFile io = new IOTextFile();
-	            List<String> list = io.readStream(isChinese);
-	            String[] a = list.toArray(new String[0]);
+            String[] a = io.readFileStreamByLength(isChinese,200);
 	            final PureHuskySort<String> sorter = new PureHuskySort<>(HuskyCoderFactory.asciiCoder, false, false);
-	            Date start = new Date();
 	            sorter.sort(a);
-	            Date end = new Date();
-	            System.out.println(end.getTime()-start.getTime());
-	            //System.out.println(Arrays.toString(a));
-	            io.writeStream(a);
+//	            System.out.println(Arrays.toString(a));
+            io.writeStream(a);
 	   }
 		catch(FileNotFoundException ex)
 		{
@@ -99,6 +95,10 @@ public class PureHuskySort<X extends Comparable<X>> {
         this.huskyCoder = huskyCoder;
         this.mayBeSorted = mayBeSorted;
         this.useInsertionSort = useInsertionSort;
+    }
+
+    public PureHuskySort() {
+        this((HuskyCoder<X>) HuskyCoderFactory.asciiCoder,false,false);
     }
 
     // CONSIDER invoke method in IntroSort

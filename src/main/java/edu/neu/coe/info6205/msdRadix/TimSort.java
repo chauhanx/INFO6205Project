@@ -29,9 +29,8 @@ public class TimSort {
 	        temp = a[i];  
 	        j = i - 1;  
 	  
-	        while(j >= beg && temp.compareToIgnoreCase(a[j]) <= 0)    //temp <= a[j]
-	        {    
-	            a[j+1] = a[j];     
+	        while(j >= beg && less(temp,a[j])){
+	            a[j+1] = a[j];
 	            j = j-1;    
 	        }    
 	        a[j+1] = temp;    
@@ -40,8 +39,8 @@ public class TimSort {
 	} 
 	
 	
-	public static void timSort(String a[], int n)  
-	{     
+	private static void timSort(String a[], int n)
+	{
 	    /* Sort individual subarrays of size RUN */  
 	    for (int i = 0; i < n; i+=RUN)  
 	        insertionSort(a, i, min((i+RUN-1), (n-1)));   
@@ -63,7 +62,7 @@ public class TimSort {
 	    }  
 	}  
 	
-	public static void merge(String a[], int beg, int mid, int end)    
+	private static void merge(String a[], int beg, int mid, int end)
 	{    
 	    int i, j, k;  
 	    int n1 = mid - beg + 1;    
@@ -78,41 +77,27 @@ public class TimSort {
 	    RightArray[j] = a[mid + 1 + j];        
 	    i = 0;   
 	    j = 0;   
-	    k = beg;      
-	    while (i < n1 && j < n2)    
-	    {    
-	        if(LeftArray[i].compareToIgnoreCase(RightArray[j])<=0)    //LeftArray[i] <= RightArray[j]
-	        {    
-	            a[k] = LeftArray[i];    
-	            i++;    
-	        }    
-	        else    
-	        {    
-	            a[k] = RightArray[j];    
-	            j++;    
-	        }    
-	        k++;    
-	    }    
-	    while (i<n1)    
-	    {    
-	        a[k] = LeftArray[i];    
-	        i++;    
-	        k++;    
-	    }        
-	    while (j<n2)    
-	    {    
-	        a[k] = RightArray[j];    
-	        j++;    
-	        k++;    
-	    }
+	    k = beg;
+		while (i < n1 && j < n2) {
+			if(less(LeftArray[i],RightArray[j])) a[k++] = LeftArray[i++];
+			else a[k++] = RightArray[j++];
+		}
+		while (i<n1){
+			a[k++] = LeftArray[i++];
+		}
+		while (j<n2) {
+			a[k++] = RightArray[j++];
+		}
 	    
-	} 
+	}
+
+	private static boolean less(String v, String w) {
+		return helper.compare(v,w) <= 0;
+	}
 	
 	/* function to print the array elements */  
-	void printArr(int[] a, int n)  
-	{  
-	    for (int i = 0; i < n; i++)  
-	        System.out.print(a[i] + " ");  
+	public static void sort(String[] a) {
+		timSort(a, a.length);
 	} 
 	
 	public static void main(String args[]) throws IOException   
@@ -120,14 +105,8 @@ public class TimSort {
 		try
 		{
 				IOTextFile io = new IOTextFile();
-	            List<String> list = io.readStream(isChinese);
-	            String[] a = list.toArray(new String[0]);	            
-	            int n = a.length;
-	            Date start = new Date();
-	            timSort(a, n);
-	            Date end = new Date();
-	            System.out.println(end.getTime()-start.getTime());
-	            io.writeStream(a);
+				String[] a = io.readFileStreamByLength(isChinese,20);
+				sort(a);
 	   }
 		catch(FileNotFoundException ex)
 		{

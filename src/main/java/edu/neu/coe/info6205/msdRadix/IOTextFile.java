@@ -6,6 +6,7 @@ import java.io.*;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.List;
 
 public class IOTextFile {
 
@@ -39,7 +40,26 @@ public class IOTextFile {
             ex.printStackTrace();
         }
         return words;
+    }
 
+    public  List readFileStreamPairByLength(boolean isChinese, int length) throws IOException {
+        this.isChinese = isChinese;
+//        String[] words=new String[length];
+        List<ArrayList<String>> list = new ArrayList<>();
+        URL url = Resources.getResource(getInputFileName());
+        try (BufferedReader read= new BufferedReader(new FileReader(url.getFile()))){
+            String word=null;
+            for(int i=0;i<length;i++){
+                list.add(new ArrayList<>());
+                if((word=read.readLine()) != null){
+                    list.get(i).add(word);
+                    list.get(i).add(word);
+                }
+            }
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        return list;
     }
 
 

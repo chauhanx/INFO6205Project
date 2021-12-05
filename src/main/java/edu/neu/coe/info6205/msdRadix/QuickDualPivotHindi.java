@@ -78,17 +78,10 @@ public class QuickDualPivotHindi {
     // Read strings from standard input, sort them, and print.
     public static void main(String[] args) throws IOException {
     	 IOTextFile io = new IOTextFile();
-        String[] a = io.readFileStreamByLength(isChinese,20);
-
+        String[] a = io.readFileStreamByLength(isChinese,200);
         QuickDualPivotHindi.sort(a);
-        System.out.println(Arrays.toString(a));
-       // show(a);
-        try {
-			io.writeStream(a);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//        System.out.println(Arrays.toString(a));
+        io.writeStream(a);
     }
 
 }
