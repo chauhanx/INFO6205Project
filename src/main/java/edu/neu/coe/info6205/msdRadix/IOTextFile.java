@@ -26,8 +26,8 @@ public class IOTextFile {
 
     public static String[] readFileInRange(String fileName,int length) throws IOException {
         String[] words=new String[length];
-
-        try (BufferedReader read= new BufferedReader(new FileReader(fileName))){
+        URL url = Resources.getResource(fileName);
+        try (BufferedReader read= new BufferedReader(new FileReader(url.getFile()))){
             String line=null;
             for(int i=0;i<length;i++){
                 if((line=read.readLine()) != null){
@@ -66,6 +66,6 @@ public class IOTextFile {
     }
 
     private String getInputFileName(){
-        return isChinese ? "chinese.txt":"hindi.txt";
+        return isChinese ? "chinese.txt":"hindiWords.txt";
     }
 }

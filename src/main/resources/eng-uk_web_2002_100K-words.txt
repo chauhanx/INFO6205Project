@@ -7527,7 +7527,7 @@
 7545	needle	22
 7546	negligence	22
 7547	negotiation	22
-7548	node	22
+7548	pair	22
 7549	notices	22
 7550	novels	22
 7551	nursery	22
@@ -67024,7 +67024,7 @@
 67042	I-J	1
 67043	I-Jung	1
 67044	I-Q	1
-67045	I-node	1
+67045	I-pair	1
 67046	I.C.C	1
 67047	I.C.T	1
 67048	I.D	1

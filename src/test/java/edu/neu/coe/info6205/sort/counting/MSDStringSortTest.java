@@ -1,7 +1,6 @@
 package edu.neu.coe.info6205.sort.counting;
 
 import edu.neu.coe.info6205.msdRadix.MSDRadixHindi;
-import edu.neu.coe.info6205.msdRadix.MSDRadixSort;
 import edu.neu.coe.info6205.sort.BaseHelper;
 import edu.neu.coe.info6205.sort.Helper;
 import edu.neu.coe.info6205.util.Config;
@@ -24,7 +23,7 @@ public class MSDStringSortTest {
     String[] expected = "आके आके कलयुगी कान्हा कान्हा को गोपियों तू दे दे दे नचा फिर फिर फिर बंशी बंशी बजा बजा से से से".split(" ");
 
     @Test
-    public void sort() {
+    public void test0() {
         System.out.println("Test case 1:");
         System.out.println("Before sorting: " + Arrays.toString(input));
         MSDRadixHindi.sort(input);
@@ -32,9 +31,11 @@ public class MSDStringSortTest {
         assertArrayEquals(expected, input);
         System.out.println();
     }
+    
+    
 
     @Test
-    public void sort1() throws IOException {
+    public void test1() throws IOException {
         int n = 11368;
         final Helper<String> helper = new BaseHelper<>("test", n, 1L, Config.load(MSDStringSortTest.class));
         helper.init(n);
@@ -45,6 +46,40 @@ public class MSDStringSortTest {
         assertEquals("अंक", words[1]);
         System.out.println("After sorting  4th word must be: अंकुर");
         assertEquals("अंकुर", words[3]);
+    }
+    
+    @Test
+    public void test2()
+    {
+    	assertEquals(2310,MSDRadixHindi.char_at("आके",0));
+    	assertEquals(2325,MSDRadixHindi.char_at("आके",1));
+    	assertEquals(-1,MSDRadixHindi.char_at("आके",40));
+    }
+    
+    @Test
+    public void test3()
+    {
+    	String in[]="आके कान्हा फिर से बंशी".split(" ");
+    	MSDRadixHindi.sort(input);
+    	 assertArrayEquals(expected, input);
+    }
+
+    @Test
+    public void test4()
+    {
+        String arr[] = {};
+        MSDRadixHindi.sort(arr);
+        assertArrayEquals(new String[0], arr);
+    }
+
+
+    @Test
+    public void test5()
+    {
+
+        String arr[] = {};
+        MSDRadixHindi.sort(arr);
+        assertArrayEquals(new String[0], arr);
     }
 
     /**
