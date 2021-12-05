@@ -4,7 +4,7 @@ import edu.neu.coe.info6205.huskySort.PureHuskySort;
 import edu.neu.coe.info6205.huskySortUtils.Coding;
 import edu.neu.coe.info6205.huskySortUtils.HuskyCoder;
 import edu.neu.coe.info6205.huskySortUtils.HuskyCoderFactory;
-import edu.neu.coe.info6205.sort.BaseHelper;
+import edu.neu.coe.info6205.sort.BaseeHelper;
 import edu.neu.coe.info6205.util.PrivateMethodInvoker;
 
 import org.junit.Test;
@@ -16,7 +16,7 @@ import static org.junit.Assert.assertTrue;
 
 public class HuskySortTest {
 
-    private final BaseHelper<String> helper = new BaseHelper<>("dummy helper");
+    private final BaseeHelper<String> helper = new BaseeHelper<>("dummy helper");
 
     @Test
     public void testSortString1() {
