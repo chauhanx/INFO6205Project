@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import edu.neu.coe.info6205.charts.Charts;
-import edu.neu.coe.info6205.huskySort.PureHuskySort;
+//import edu.neu.coe.info6205.huskySort.PureHuskySort;
 import edu.neu.coe.info6205.msdRadix.*;
 import edu.neu.coe.info6205.util.Timer;
 
@@ -116,16 +116,16 @@ public class Benchmark {
 
 
 //      Husky Benchmark
-        type = "Husky Sort";
-        timer = new Timer();
-        final String[] tmphusky = Arrays.copyOf(words,words.length);
-        PureHuskySort hs = new PureHuskySort<>();
-        mean = timer.repeat(runs, () -> tmphusky, t -> {
-            hs.sort(tmphusky);
-            return null;
-        });
-        yData.get(4).add(mean);
-        System.out.println("Time taken for "+type+" to sort "+words.length + " array size: "+mean);
+//        type = "Husky Sort";
+//        timer = new Timer();
+//        final String[] tmphusky = Arrays.copyOf(words,words.length);
+//        PureHuskySort hs = new PureHuskySort<>();
+//        mean = timer.repeat(runs, () -> tmphusky, t -> {
+//            hs.sort(tmphusky);
+//            return null;
+//        });
+//        yData.get(4).add(mean);
+//        System.out.println("Time taken for "+type+" to sort "+words.length + " array size: "+mean);
 
 
     }
