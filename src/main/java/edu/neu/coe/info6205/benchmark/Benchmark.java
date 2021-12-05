@@ -8,7 +8,6 @@ import java.util.List;
 
 import edu.neu.coe.info6205.charts.Charts;
 import edu.neu.coe.info6205.huskySort.PureHuskySort;
-import edu.neu.coe.info6205.huskySortUtils.HuskyCoderFactory;
 import edu.neu.coe.info6205.msdRadix.*;
 import edu.neu.coe.info6205.util.Timer;
 
@@ -22,11 +21,12 @@ public class Benchmark {
 
     private static void startBenchMark() throws IOException {
         try{
+            System.out.println("Benchmarking for Chinese Words");
             System.out.println("Processing benchmarking ...");
             IOTextFile io = new IOTextFile();
             int[] length = {initial};
-//            int[] length = {initial,2*initial,4*initial};
-            int totalAlgos = 4;
+//            int[] length = {initial,2*initial,4*initial,8*initial,16*initial};
+            int totalAlgos = 5;
             for(int i=0;i<totalAlgos;i++){
                 yData.add(new ArrayList<>());
             }
@@ -51,9 +51,9 @@ public class Benchmark {
             e.printStackTrace();
         }
 
-        Charts c = new Charts();
-        c.createChart(xData,yData);
-        c.getChart(xData,yData);
+//        Charts c = new Charts();
+//        c.createChart(xData,yData);
+//        c.getChart(xData,yData);
     }
 
 
@@ -67,7 +67,7 @@ public class Benchmark {
         type = "Tim";
         timer = new Timer();
         final String[] tmp1 = Arrays.copyOf(words,words.length);
-        TimSortChinese timSorter = new TimSortChinese();
+        TimSort timSorter = new TimSort();
         mean = timer.repeat(runs, () -> tmp1, t -> {
             timSorter.sort(tmp1);
             return null;
@@ -77,7 +77,7 @@ public class Benchmark {
 
 
 //        MSD Benchmark
-        type = "MSD Radix new ";
+        type = "MSD Radix";
         timer = new Timer();
         final String[] tmp4 = Arrays.copyOf(words,words.length);
         MSDRadixSort msdSo = new MSDRadixSort();
@@ -106,7 +106,7 @@ public class Benchmark {
         type = "QuickDual Pivot";
         timer = new Timer();
         final String[] tmpQuick = Arrays.copyOf(words,words.length);
-        QuickDualPivotC qs = new QuickDualPivotC();
+        QuickDualPivot qs = new QuickDualPivot();
         mean = timer.repeat(1, () -> tmpQuick, t -> {
             qs.sort(tmpQuick);
             return null;
@@ -115,26 +115,22 @@ public class Benchmark {
         System.out.println("Time taken for "+type+" to sort "+words.length + " array size: "+mean);
 
 
-//      TimSort Benchmark
+//      Husky Benchmark
         type = "Husky Sort";
         timer = new Timer();
         final String[] tmphusky = Arrays.copyOf(words,words.length);
-        PureHuskySort hs = new PureHuskySort<>(HuskyCoderFactory.asciiCoder, false, false);
-        mean = timer.repeat(1, () -> tmphusky, t -> {
+        PureHuskySort hs = new PureHuskySort<>();
+        mean = timer.repeat(runs, () -> tmphusky, t -> {
             hs.sort(tmphusky);
             return null;
         });
-        yData.get(3).add(mean);
+        yData.get(4).add(mean);
         System.out.println("Time taken for "+type+" to sort "+words.length + " array size: "+mean);
 
 
     }
 
-
-
-
     public static void main(String[] args) throws IOException {
         startBenchMark();
-
     }
 }

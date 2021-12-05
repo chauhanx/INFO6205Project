@@ -36,7 +36,7 @@ public class LSDRadixHindi {
 
         private static void sort(String[] arr, int length) {
             int n = arr.length;
-            int R = 65536;   // extend ASCII alphabet size
+//            int R = 65536;   // extend ASCII alphabet size
             String[] aux = new String[n];
 
             for (int i = length-1; i >= 0; i--) {

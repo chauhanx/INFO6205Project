@@ -10,9 +10,6 @@ import edu.neu.coe.info6205.charts.Charts;
 import edu.neu.coe.info6205.huskySort.PureHuskySort;
 import edu.neu.coe.info6205.msdRadix.*;
 import edu.neu.coe.info6205.util.Timer;
-import org.knowm.xchart.*;
-import org.knowm.xchart.style.Styler;
-import org.knowm.xchart.style.markers.SeriesMarkers;
 
 
 public class BenchmarkHindi {
@@ -20,15 +17,15 @@ public class BenchmarkHindi {
     final static boolean isChinese = false;
     static List<Double> xData = new ArrayList<>();
     static List<List<Double>> yData = new ArrayList<>();
-
+    static int initial = 250000;
 
     private static void startBenchMark() throws IOException {
         try{
             System.out.println("Benchmarking for Hindi Words");
             System.out.println("Processing benchmarking ...");
             IOTextFile io = new IOTextFile();
-            int[] length = {250000,500000};
-//            int[] length = {250000,500000,1000000,2000000,4000000};
+            int[] length = {initial,2*initial};
+//            int[] length = {initial,2*initial,4*initial,8*initial,16*initial};
             int totalAlgos = 5;
             for(int i=0;i<totalAlgos;i++){
                 yData.add(new ArrayList<>());
@@ -107,7 +104,7 @@ public class BenchmarkHindi {
         type = "Quick Dual";
         timer = new Timer();
         final String[] tmp3 = Arrays.copyOf(words,words.length);
-        QuickDualPivot qs = new QuickDualPivot();
+        QuickDualPivotHindi qs = new QuickDualPivotHindi();
         mean = timer.repeat(runs, () -> tmp3, t -> {
             qs.sort(tmp3);
             return null;

@@ -11,7 +11,7 @@ public class MSDRadixSort {
      public static void main(String[] args) throws IOException {
         try{
             IOTextFile io = new IOTextFile();
-            String[] a =  io.readFileStreamByLength(isChinese,2000);
+            String[] a =  io.readFileStreamByLength(isChinese,20);
             sort(a);
             System.out.println(Arrays.toString(a));
         }catch(FileNotFoundException ex){
@@ -56,3 +56,9 @@ public class MSDRadixSort {
         return -1;
     }
 }
+
+//lsd//msd//quick//tim
+////[曹玉德, 樊辉辉, 高民政, 顾芳芳, 郭健华, 洪文胜, 黄锡鸿, 刘持平, 罗庆富, 沙洪涛, 舒冬梅, 宋雪光, 苏会敏, 王广风, 王诗卉, 徐志森, 许凤山, 杨腊香, 袁继鹏, 苑彬]
+////[曹玉德, 樊辉辉, 高民政, 顾芳芳, 郭健华, 洪文胜, 黄锡鸿, 刘持平, 罗庆富, 沙洪涛, 舒冬梅, 宋雪光, 苏会敏, 王广风, 王诗卉, 徐志森, 许凤山, 杨腊香, 袁继鹏, 苑彬]
+////[曹玉德, 樊辉辉, 高民政, 顾芳芳, 郭健华, 洪文胜, 黄锡鸿, 刘持平, 罗庆富, 沙洪涛, 舒冬梅, 宋雪光, 苏会敏, 王广风, 王诗卉, 徐志森, 许凤山, 杨腊香, 袁继鹏, 苑彬]
+//[袁继鹏, 樊辉辉, 王诗卉, 宋雪光, 王广风, 徐志森, 舒冬梅, 刘持平, 沙洪涛, 洪文胜, 许凤山, 黄锡鸿, 苏会敏, 苑彬, 罗庆富, 高民政, 杨腊香, 郭健华, 曹玉德, 顾芳芳]

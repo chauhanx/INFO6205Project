@@ -30,7 +30,7 @@ public class Charts {
         series2.setMarker(SeriesMarkers.PLUS);
         XYSeries series3 = chart.addSeries("QuickDual Pivot", xData,yData.get(3));
         series3.setMarker(SeriesMarkers.DIAMOND);
-        XYSeries series4 = chart.addSeries("Husky SOrt", xData,yData.get(4));
+        XYSeries series4 = chart.addSeries("Husky Sort", xData,yData.get(4));
         series4.setMarker(SeriesMarkers.PLUS);
 
         new SwingWrapper<XYChart>(chart).displayChart();

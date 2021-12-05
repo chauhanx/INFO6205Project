@@ -14,24 +14,6 @@ public class helper {
 
     static Collator collator = Collator.getInstance(Locale.CHINESE);
 
-    public static Pair[] getChinesePair(String[] arr){
-        Pair[] array = new Pair[arr.length];
-        for (int i = 0; i < arr.length; i++) {
-            array[i] = new Pair(arr[i]);
-        }
-       // System.out.println(array[0].getValue());
-        return array;
-    }
-
-
-    public static Pair getPinyin(Pair pair) throws BadHanyuPinyinOutputFormatCombination{
-
-        HanyuPinyinOutputFormat format = new HanyuPinyinOutputFormat();
-        format.setCaseType(HanyuPinyinCaseType.LOWERCASE);
-        format.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
-        pair.setValue(PinyinHelper.toHanYuPinyinString(pair.getValue(), format,"",false));
-        return pair;
-    }
 
     public static int compare(String str1, String str2){
         return collator.compare(str1, str2);
@@ -52,6 +34,10 @@ public class helper {
         }catch (BadHanyuPinyinOutputFormatCombination ex){
             return null;
         }
+    }
+
+    public static Collator getCollator(){
+        return collator;
     }
 
 }
