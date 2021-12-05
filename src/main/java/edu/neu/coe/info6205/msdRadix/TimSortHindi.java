@@ -6,18 +6,20 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-public class TimSortHindi {
+public class TimSort {
 
 	static int RUN = 32;  
 	static boolean isChinese = false;
-	int min(int a, int b)    
+	
+	public static int min(int a, int b)    
 	{    
 	    if(a<b)    
 	    return a;     
 	    else     
 	    return b;     
 	} 
-	void insertionSort(String a[], int beg, int end) /* function to sort an array with   
+	
+	public static void insertionSort(String a[], int beg, int end) /* function to sort an array with   
 	insertion sort */  
 	{  
 	    int i, j;
@@ -34,10 +36,11 @@ public class TimSortHindi {
 	        }    
 	        a[j+1] = temp;    
 	    }  
+	    	    
 	} 
 	
 	
-	public void timSort(String a[], int n)  
+	public static void timSort(String a[], int n)  
 	{     
 	    /* Sort individual subarrays of size RUN */  
 	    for (int i = 0; i < n; i+=RUN)  
@@ -60,7 +63,7 @@ public class TimSortHindi {
 	    }  
 	}  
 	
-	void merge(String a[], int beg, int mid, int end)    
+	public static void merge(String a[], int beg, int mid, int end)    
 	{    
 	    int i, j, k;  
 	    int n1 = mid - beg + 1;    
@@ -101,8 +104,10 @@ public class TimSortHindi {
 	        a[k] = RightArray[j];    
 	        j++;    
 	        k++;    
-	    }    
-	}   
+	    }
+	    
+	} 
+	
 	/* function to print the array elements */  
 	void printArr(int[] a, int n)  
 	{  
@@ -115,16 +120,19 @@ public class TimSortHindi {
 		try
 		{
 		    IOTextFile io = new IOTextFile();
-			String[] a = io.readFileStreamByLength(isChinese,20);
-			int n = a.length;
-			TimSortHindi t1 = new TimSortHindi();
-			t1.timSort(a, n);
-			System.out.println(Arrays.toString(a));
-	   	}
+	            List<String> list = io.readStream(isChinese);
+	            String[] a = list.toArray(new String[0]);	            
+	            int n = a.length;
+	            Date start = new Date();
+	            timSort(a, n);
+	            Date end = new Date();
+	            System.out.println(end.getTime()-start.getTime());
+	            io.writeStream(a);
+	   }
 		catch(FileNotFoundException ex)
 		{
 	            System.out.println(ex.getMessage());
-	        } 
+	    } 
 	} 
 }
 
