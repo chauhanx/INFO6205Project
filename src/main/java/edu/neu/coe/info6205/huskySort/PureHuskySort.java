@@ -1,5 +1,4 @@
 package edu.neu.coe.info6205.huskySort;
-//package edu.neu.coe.huskySort.sort.huskySort;
 
 import edu.neu.coe.info6205.huskySortUtils.Coding;
 import edu.neu.coe.info6205.huskySortUtils.HuskyCoder;
@@ -42,6 +41,7 @@ public class PureHuskySort<X extends Comparable<X>> {
 	            sorter.sort(a);
 	            Date end = new Date();
 	            System.out.println(end.getTime()-start.getTime());
+	            //System.out.println(Arrays.toString(a));
 	            io.writeStream(a);
 	   }
 		catch(FileNotFoundException ex)
@@ -174,7 +174,7 @@ public class PureHuskySort<X extends Comparable<X>> {
         objects[lo + i - 1] = od;
     }
 
-    static <T extends Comparable<T>> void insertionSort(final T[] objects, final long[] longs, final int from, final int to) {
+    public static <T extends Comparable<T>> void insertionSort(final T[] objects, final long[] longs, final int from, final int to) {
         for (int i = from + 1; i < to; i++)
             if (OPTIMIZED)
                 swapIntoSorted(objects, longs, i);
