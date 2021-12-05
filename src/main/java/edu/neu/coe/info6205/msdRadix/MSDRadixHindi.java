@@ -8,7 +8,7 @@ import java.util.*;
 public class MSDRadixHindi {
 
     static int R=3000;
-    static int S=2000;
+    static int S=0;
     static boolean isChinese = false;
 
     public static void main(String[] args) throws IOException {
@@ -35,6 +35,7 @@ public class MSDRadixHindi {
     public static int char_at(String s, int d){
         if (d < s.length()){
             int a = (int)s.charAt(d);
+            
             return a;
         }
         else return -1;
@@ -54,6 +55,10 @@ public class MSDRadixHindi {
 
         for(int i=low;i<=high;i++){
             int c =  char_at(arr[i],d);
+            if(c!=-1 && c>3000)
+            {
+            	System.out.println(arr[i]+" ");
+            }
             count[c+2]++;
         }
         for(int r=S;r<R;r++){
