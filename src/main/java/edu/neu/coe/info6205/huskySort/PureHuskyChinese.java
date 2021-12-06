@@ -32,13 +32,11 @@ public class PureHuskyChinese<X extends Comparable<X>> {
         try
         {
             IOTextFile io = new IOTextFile();
-            String[] a = io.readFileStreamByLength(isChinese,250000);
+            String[] a = io.readFileStreamByLength(isChinese,200);
             final PureHuskyChinese<String> sorter = new PureHuskyChinese<>(HuskyCoderFactory.unicodeCoder, false, false);
-            Date start = new Date();
             sorter.sort(a);
-            Date end = new Date();
-            System.out.println(end.getTime()-start.getTime());
 //            System.out.println(Arrays.toString(a));
+            io.writeStream(a);
         }
         catch(FileNotFoundException ex)
         {
@@ -60,8 +58,8 @@ public class PureHuskyChinese<X extends Comparable<X>> {
         final long[] longs = coding.longs;
         introSort(xs, longs, 0, longs.length, 2 * floor_lg(xs.length));
         // NOTE: Second pass (if required) to fix any remaining inversions.
-        if (coding.perfect)
-            return;
+//        if (coding.perfect)
+//            return;
         if (useInsertionSort)
             new InsertionSort<X>().mutatingSort(xs);
         else {
@@ -85,7 +83,7 @@ public class PureHuskyChinese<X extends Comparable<X>> {
     }
 
     public PureHuskyChinese() {
-        this((HuskyCoder<X>) HuskyCoderFactory.asciiCoder,false,false);
+        this((HuskyCoder<X>) HuskyCoderFactory.unicodeCoder,false,false);
     }
 
     // CONSIDER invoke method in IntroSort

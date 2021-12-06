@@ -42,26 +42,6 @@ public class IOTextFile {
         return words;
     }
 
-    public  List readFileStreamPairByLength(boolean isChinese, int length) throws IOException {
-        this.isChinese = isChinese;
-//        String[] words=new String[length];
-        List<ArrayList<String>> list = new ArrayList<>();
-        URL url = Resources.getResource(getInputFileName());
-        try (BufferedReader read= new BufferedReader(new FileReader(url.getFile()))){
-            String word=null;
-            for(int i=0;i<length;i++){
-                list.add(new ArrayList<>());
-                if((word=read.readLine()) != null){
-                    list.get(i).add(word);
-                    list.get(i).add(word);
-                }
-            }
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
-        }
-        return list;
-    }
-
 
     public void writeStream(String[] arr) throws IOException {
         try {
@@ -73,6 +53,24 @@ public class IOTextFile {
             FileWriter writer = new FileWriter(getOutputFileName(), false);
             for (int i = 0; i < arr.length; i++) {
                 writer.write(arr[i]);
+                writer.write("\n");   // write new line
+            }
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void writePairStream(Pair[] arr) throws IOException {
+        try {
+            File file = new File(getOutputFileName()); //filepath is being passes through //ioc         //and filename through a method
+
+            if (file.exists()) {
+                file.delete(); //you might want to check if delete was successfull
+            }
+            FileWriter writer = new FileWriter(getOutputFileName(), false);
+            for (int i = 0; i < arr.length; i++) {
+                writer.write(arr[i].getKey());
                 writer.write("\n");   // write new line
             }
             writer.close();

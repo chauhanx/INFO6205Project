@@ -64,6 +64,11 @@ public class Benchmark {
         String type;
         int runs = 10;
 
+        for (int i = 0; i < 500000; i++) {
+
+        }
+
+
 //      Tim Sort Benchmark
         type = "Tim";
         timer = new Timer();

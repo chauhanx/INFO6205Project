@@ -107,6 +107,7 @@ public class TimSort {
 				IOTextFile io = new IOTextFile();
 				String[] a = io.readFileStreamByLength(isChinese,20);
 				sort(a);
+
 	   }
 		catch(FileNotFoundException ex)
 		{

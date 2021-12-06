@@ -4,11 +4,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
 
-public class MSDRadixSort {
+public class MSDRadixPair {
 
     static int R=256;
     static boolean isChinese = true;
-     public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
         try{
             IOTextFile io = new IOTextFile();
             String[] a =  io.readFileStreamByLength(isChinese,200);
@@ -20,28 +20,33 @@ public class MSDRadixSort {
         }
     }
 
-
     public static void sort(String[] arr)  {
-         String[] aux = new String[arr.length];
-         for(int i=0;i<arr.length;i++){
-             arr[i] = helper.getPinyin(arr[i]);
-         }
-         sort(arr, aux, 0, arr.length - 1, 0);
+        Pair[] aux = new Pair[arr.length];
+        Pair[] a = new Pair[arr.length];
+        for(int i=0;i<arr.length;i++){
+            a[i] = new Pair(arr[i]);
+        }
+        sort(a, aux, 0, arr.length - 1, 0);
+
+//        to print array back to chinese words
+//        for(int i=0;i<arr.length;i++){
+//            arr[i] = a[i].getValue();
+//        }
     }
 
-    private static void sort(String[] arr, String[] aux, int low, int high, int d) {
+    private static void sort(Pair[] arr, Pair[] aux, int low, int high, int d) {
         if (high <= low )return;
         int[] count = new int[R+2];
 
         for(int i=low;i<=high;i++){
-            int c =  char_at(arr[i],d);
+            int c =  char_at(arr[i].getValue(),d);
             count[c+2]++;
         }
         for(int r=0;r<R;r++){
             count[r+1] += count[r];
         }
         for(int i=low;i<=high;i++){
-            aux[count[char_at(arr[i], d) + 1]++] = arr[i];
+            aux[count[char_at(arr[i].getValue(), d) + 1]++] = arr[i];
         }
         for(int i=low;i<=high;i++){
             arr[i] = aux[i-low];

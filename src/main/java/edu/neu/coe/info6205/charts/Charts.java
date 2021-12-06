@@ -15,7 +15,7 @@ public class Charts {
     public void createChart(List<Double> xData,List<List<Double>> yData) throws IOException {
         this.xData = xData;
         this.yData = yData;
-        XYChart chart = new XYChartBuilder().width(1000).height(600).theme(Styler.ChartTheme.XChart).title("Array Sorting").xAxisTitle("Array Size").yAxisTitle("Time(in seconds)").build();
+        XYChart chart = new XYChartBuilder().width(1000).height(600).theme(Styler.ChartTheme.XChart).title("Array Sorting").xAxisTitle("Array Size").yAxisTitle("Time(in ms)").build();
 
         // Customize Chart
         chart.getStyler().setPlotGridLinesVisible(false);
@@ -41,7 +41,7 @@ public class Charts {
         this.yData = yData;
         this.xData = xData;
         // Create Chart
-        CategoryChart chart = new CategoryChartBuilder().width(800).height(600).title("Sorting algorithms").xAxisTitle("Array Size").yAxisTitle("Time").theme(Styler.ChartTheme.GGPlot2).build();
+        CategoryChart chart = new CategoryChartBuilder().width(800).height(600).title("Sorting algorithms").xAxisTitle("Array Size").yAxisTitle("Time (in ms)").theme(Styler.ChartTheme.GGPlot2).build();
 
         // Customize Chart
         String size[] = {"25","50k","1M","2M"};

@@ -64,6 +64,10 @@ public class BenchmarkHindi {
         String type;
         int runs = 10;
 
+        for (int i = 0; i < 500000; i++) {
+
+        }
+
         type = "Tim";
         timer = new Timer();
         final String[] tmp1 = Arrays.copyOf(words,words.length);
