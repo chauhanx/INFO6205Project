@@ -1,6 +1,7 @@
 package edu.neu.coe.info6205.sort.counting;
 
-import edu.neu.coe.info6205.msdRadix.MSDRadixHindi;
+import edu.neu.coe.info6205.huskySort.PureHuskySort;
+import edu.neu.coe.info6205.msdRadix.*;
 import edu.neu.coe.info6205.sort.BaseHelper;
 import edu.neu.coe.info6205.sort.Helper;
 import edu.neu.coe.info6205.util.Config;
@@ -17,7 +18,7 @@ import java.util.stream.Collectors;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
-public class MSDStringSortTest {
+public class HindiTestCase {
 
     String[] input = "आके कान्हा फिर से बंशी बजा दे कलयुगी गोपियों को फिर से नचा दे आके कान्हा तू फिर से बंशी बजा दे".split(" ");
     String[] expected = "आके आके कलयुगी कान्हा कान्हा को गोपियों तू दे दे दे नचा फिर फिर फिर बंशी बंशी बजा बजा से से से".split(" ");
@@ -32,14 +33,13 @@ public class MSDStringSortTest {
         System.out.println();
     }
     
-    
 
     @Test
     public void test1() throws IOException {
         int n = 11368;
-        final Helper<String> helper = new BaseHelper<>("test", n, 1L, Config.load(MSDStringSortTest.class));
+        final Helper<String> helper = new BaseHelper<>("test", n, 1L, Config.load(HindiTestCase.class));
         helper.init(n);
-        String[] words = getWords("hindi.txt", MSDStringSortTest::lineAsList);
+        String[] words = getWords("hindiWords.txt", HindiTestCase::lineAsList);
         MSDRadixHindi.sort(words);
         System.out.println("Test case 2:");
         System.out.println("After sorting 2nd word must be: अंक ");
@@ -51,8 +51,8 @@ public class MSDStringSortTest {
     @Test
     public void test2()
     {
-    	assertEquals(2310,MSDRadixHindi.char_at("आके",0));
-    	assertEquals(2325,MSDRadixHindi.char_at("आके",1));
+    	assertEquals(10,MSDRadixHindi.char_at("आके",0));
+    	assertEquals(25,MSDRadixHindi.char_at("आके",1));
     	assertEquals(-1,MSDRadixHindi.char_at("आके",40));
     }
     
@@ -74,13 +74,65 @@ public class MSDStringSortTest {
 
 
     @Test
-    public void test5()
-    {
+    public void test5() throws IOException {
+        QuickDualPivotHindi qp = new QuickDualPivotHindi();
+        String[] words = getWords("hindiWords.txt", HindiTestCase::lineAsList);
+        qp.sort(words);
+        System.out.println("Test case 2:");
+        System.out.println("After sorting 2nd word must be: अंक ");
+        assertEquals("अंक", words[1]);
+        System.out.println("After sorting  4th word must be: अंकुर");
+        assertEquals("अंकुर", words[3]);
+    }
 
+    @Test
+    public void test6()
+    {
+        LSDRadixHindi qp = new LSDRadixHindi();
+        String in[]="आके कान्हा फिर से बंशी".split(" ");
+        qp.sort(input);
+        assertArrayEquals(expected, input);
+    }
+
+    @Test
+    public void test7()
+    {
+        TimSortHindi t = new TimSortHindi();
+        assertEquals(10,MSDRadixHindi.char_at("आके",0));
+        assertEquals(25,MSDRadixHindi.char_at("आके",1));
+        assertEquals(-1,MSDRadixHindi.char_at("आके",40));
+    }
+
+    @Test
+    public void test8()
+    {
+        String in[]="आके कान्हा फिर से बंशी".split(" ");
+
+        new TimSortHindi().sort(input);
+        assertArrayEquals(expected, input);
+    }
+
+    @Test
+    public void test9()
+    {
+        PureHuskySort<String> sorter = new PureHuskySort<>();
         String arr[] = {};
-        MSDRadixHindi.sort(arr);
+        sorter.sort(arr);
         assertArrayEquals(new String[0], arr);
     }
+
+    @Test
+    public void test10() {
+        PureHuskySort<String> sorter = new PureHuskySort<>();
+        System.out.println("Test case 1:");
+        System.out.println("Before sorting: " + Arrays.toString(input));
+        sorter.sort(input);
+        System.out.println("After sorting: " + Arrays.toString(input));
+        assertArrayEquals(expected, input);
+        System.out.println();
+    }
+
+
 
     /**
      * Create a string representing an integer, with commas to separate thousands.
@@ -101,7 +153,7 @@ public class MSDStringSortTest {
      */
     static String[] getWords(final String resource, final Function<String, List<String>> stringListFunction) {
         try {
-            final File file = new File(getPathname(resource, MSDStringSortTest.class));
+            final File file = new File(getPathname(resource, HindiTestCase.class));
             final String[] result = getWordArray(file, stringListFunction, 2);
             System.out.println("getWords: testing with " + formatWhole(result.length) + " unique words: from " + file);
             return result;

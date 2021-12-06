@@ -4,6 +4,11 @@ public class Pair {
     private String key;
     private String value;
 
+    public Pair(String key){
+        this.key = key;
+        this.value = helper.getPinyin(key);
+    }
+
 
     public Pair(){
         this.key = null;
@@ -15,10 +20,6 @@ public class Pair {
         this.value = value;
     }
 
-    public Pair(String key){
-        this.key = key;
-        this.value = helper.getPinyin(key);
-    }
 
     public String getKey(){
         return key;

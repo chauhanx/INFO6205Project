@@ -9,15 +9,19 @@ public class MSDRadixPair {
     static int R=256;
     static boolean isChinese = true;
     public static void main(String[] args) throws IOException {
-        try{
+//        try{
             IOTextFile io = new IOTextFile();
-            String[] a =  io.readFileStreamByLength(isChinese,200);
+            String[] a = { "刘持平" ,"洪文胜" ,"樊辉辉" ,"苏会敏" ,"高民政" ,"曹玉德" ,"袁继鹏" ,"舒冬梅" ,"杨腊香"};
             sort(a);
 //            System.out.println(Arrays.toString(a));
-            io.writeStream(a);
-        }catch(FileNotFoundException ex){
-            System.out.println(ex.getMessage());
-        }
+//            for (int i = 0; i < a.length; i++) {
+//                a[i] = '"' +a[i]+'"';
+//            }
+            System.out.println(Arrays.toString(a));
+//            io.writeStream(a);
+//        }catch(FileNotFoundException ex){
+//            System.out.println(ex.getMessage());
+//        }
     }
 
     public static void sort(String[] arr)  {

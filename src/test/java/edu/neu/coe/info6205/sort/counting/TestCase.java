@@ -1,10 +1,7 @@
 
 package edu.neu.coe.info6205.sort.counting;
 
-import edu.neu.coe.info6205.msdRadix.MSDRadixHindi;
-import edu.neu.coe.info6205.sort.BaseHelper;
-import edu.neu.coe.info6205.sort.Helper;
-import edu.neu.coe.info6205.util.Config;
+import edu.neu.coe.info6205.msdRadix.*;
 import org.junit.Test;
 
 import java.io.*;
@@ -19,16 +16,15 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
     public class TestCase {
-
-        String[] input = "आके कान्हा फिर से बंशी बजा दे कलयुगी गोपियों को फिर से नचा दे आके कान्हा तू फिर से बंशी बजा दे".split(" ");
-        String[] expected = "आके आके कलयुगी कान्हा कान्हा को गोपियों तू दे दे दे नचा फिर फिर फिर बंशी बंशी बजा बजा से से से".split(" ");
+        String[] input = "刘持平 洪文胜 樊辉辉 苏会敏 高民政 曹玉德 袁继鹏 舒冬梅 杨腊香".split(" ");
+        String[] expected = "刘持平 洪文胜 樊辉辉 苏会敏 高民政 曹玉德 袁继鹏 舒冬梅 杨腊香".split(" ");
 
         @Test
         public void test0() {
-            System.out.println("Test case 1:");
+            System.out.println("Test case 0:");
             System.out.println("Before sorting: " + Arrays.toString(input));
-            MSDRadixHindi.sort(input);
-            System.out.println("After sorting: " + Arrays.toString(input));
+            MSDRadixPair.sort(input);
+            System.out.println("After sorting: " + Arrays.toString(expected));
             assertArrayEquals(expected, input);
             System.out.println();
         }
@@ -37,31 +33,31 @@ import static org.junit.Assert.assertEquals;
 
         @Test
         public void test1() throws IOException {
-            int n = 11368;
-            final Helper<String> helper = new BaseHelper<>("test", n, 1L, Config.load(edu.neu.coe.info6205.sort.counting.MSDStringSortTest.class));
-            helper.init(n);
-            String[] words = getWords("hindi.txt", edu.neu.coe.info6205.sort.counting.MSDStringSortTest::lineAsList);
-            MSDRadixHindi.sort(words);
-            System.out.println("Test case 2:");
+            String[] words = getWords("chinese.txt", HindiTestCase::lineAsList);
+            LSDRadixPair.sort(words);
+            System.out.println("Test case 1:");
             System.out.println("After sorting 2nd word must be: अंक ");
-            assertEquals("अंक", words[1]);
+            assertEquals("洪文胜", words[1]);
             System.out.println("After sorting  4th word must be: अंकुर");
-            assertEquals("अंकुर", words[3]);
+            assertEquals("苏会敏", words[3]);
         }
 
         @Test
         public void test2()
         {
-            assertEquals(2310,MSDRadixHindi.char_at("आके",0));
-            assertEquals(2325,MSDRadixHindi.char_at("आके",1));
-            assertEquals(-1,MSDRadixHindi.char_at("आके",40));
+            System.out.println("Test case 2:");
+            System.out.println("Before sorting: " + Arrays.toString(input));
+            LSDRadixPair.sort(input);
+            System.out.println("After sorting: " + Arrays.toString(expected));
+            assertArrayEquals(expected, input);
+            System.out.println();
         }
 
         @Test
         public void test3()
         {
-            String in[]="आके कान्हा फिर से बंशी".split(" ");
-            MSDRadixHindi.sort(input);
+            String in[]="刘持平 洪文胜 樊辉辉 苏会敏".split(" ");
+            QuickDualPivotPair.sort(in);
             assertArrayEquals(expected, input);
         }
 
@@ -69,7 +65,7 @@ import static org.junit.Assert.assertEquals;
         public void test4()
         {
             String arr[] = {};
-            MSDRadixHindi.sort(arr);
+            TimSortPair.sort(arr);
             assertArrayEquals(new String[0], arr);
         }
 
@@ -77,10 +73,30 @@ import static org.junit.Assert.assertEquals;
         @Test
         public void test5()
         {
-
             String arr[] = {};
-            MSDRadixHindi.sort(arr);
+            MSDRadixSort.sort(arr);
             assertArrayEquals(new String[0], arr);
+        }
+
+        @Test
+        public void test6() throws IOException {
+            System.out.println("Test case 6:");
+            System.out.println("Before sorting: " + Arrays.toString(input));
+            TimSortPair.sort(input);
+            System.out.println("After sorting: " + Arrays.toString(expected));
+            assertArrayEquals(expected, input);
+            System.out.println();
+        }
+
+        @Test
+        public void test7()
+        {
+            System.out.println("Test case 7:");
+            System.out.println("Before sorting: " + Arrays.toString(input));
+            TimSortPair.sort(input);
+            System.out.println("After sorting: " + Arrays.toString(expected));
+            assertArrayEquals(expected, input);
+            System.out.println();
         }
 
         /**
@@ -102,7 +118,7 @@ import static org.junit.Assert.assertEquals;
          */
         static String[] getWords(final String resource, final Function<String, List<String>> stringListFunction) {
             try {
-                final File file = new File(getPathname(resource, edu.neu.coe.info6205.sort.counting.MSDStringSortTest.class));
+                final File file = new File(getPathname(resource, HindiTestCase.class));
                 final String[] result = getWordArray(file, stringListFunction, 2);
                 System.out.println("getWords: testing with " + formatWhole(result.length) + " unique words: from " + file);
                 return result;
