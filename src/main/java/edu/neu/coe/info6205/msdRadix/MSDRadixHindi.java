@@ -16,7 +16,6 @@ public class MSDRadixHindi {
             IOTextFile io = new IOTextFile();
             String[] a = io.readFileStreamByLength(isChinese,200);
             sort(a);
-//            System.out.println(Arrays.toString(a));
             io.writeStream(a);
         }catch(FileNotFoundException ex){
             System.out.println(ex.getMessage());
@@ -31,9 +30,7 @@ public class MSDRadixHindi {
 
     public static int char_at(String s, int d){
         if (d < s.length()){
-            int a = (int)s.charAt(d);
-            
-            return a-2300;
+            return (int)s.charAt(d)-2300;
         }
         else return -1;
     }
